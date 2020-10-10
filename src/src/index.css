@@ -1,0 +1,78 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#root {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.main {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.banner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 52px;
+  background-color: #ddd;
+}
+
+.content {
+  position: absolute;
+  top: 52px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.workspace-pane {
+  position: absolute;
+
+  left: 180px;
+  right: 180px;
+  top: 0;
+  bottom: 0;
+}
+
+.left-pane {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 180px;
+  border-right: 1px solid #ccc;
+}
+
+.document-pane {
+  position: absolute;
+  top: 0;
+  bottom: 400px;
+  left: 0;
+  right: 0;
+}
+
+
+.right-pane {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 180px;
+  border-left: 1px solid #ccc;
+}
