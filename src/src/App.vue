@@ -1,28 +1,82 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <el-container>
+      <el-header>
+        <nav-menu></nav-menu>
+      </el-header>
+      <el-container class="main-container">
+        <el-aside>
+          <library></library>
+        </el-aside>
+        <el-main>
+          <clips></clips>
+          <configure></configure>
+        </el-main>
+      </el-container>
+    </el-container>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Clips from '@/components/Clips.vue'
+import Configure from '@/components/Configure.vue'
+import Library from '@/components/Library.vue'
+import NavMenu from '@/components/NavMenu.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Clips,
+    Configure,
+    Library,
+    NavMenu
   }
 }
 </script>
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+.el-header {
+  padding: 0 !important;
+  border-bottom: 1px solid #d7dae2;
+}
+.main-container {
+  padding: 40px;
+}
+.el-aside {
+  border: 1px solid #d7dae2;
+  border-radius: 4px;
+  padding: 20px;
+}
+.library {
+  overflow: auto;
+  height: calc(100vh - 180px);
+}
+.el-main {
+  padding: 0 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.clips {
+  flex-grow: 1;
+  margin-bottom: 20px;
+  border: 1px solid #d7dae2;
+  border-radius: 4px;
+  padding: 20px;
+}
+.configure {
+  flex-grow: 1;
+  border: 1px solid #d7dae2;
+  border-radius: 4px;
+  padding: 20px;
 }
 </style>
