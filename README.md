@@ -75,4 +75,4 @@ Visit [http://localhost:8080/](http://localhost:8080/).
 * Set the compare branch as `dev` and click `Create pull request`.
 * Select some reviewers if necessary.
 * Wait for all reviewers' approvals.
-* Click `Merge pull request`.
+* Click `Rebase and merge`.
