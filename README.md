@@ -70,9 +70,9 @@ Visit [http://localhost:8080/](http://localhost:8080/).
 
 6. Create a new pull request.
 
-* Go to (https://github.com/MS-ASE-2020/team-ai-vis/pulls)[https://github.com/MS-ASE-2020/team-ai-vis/pulls].
-* Click `New pull request`.
-* Set the compare branch as `dev` and click `Create pull request`.
-* Select some reviewers if necessary.
-* Wait for all reviewers' approvals.
-* Click `Rebase and merge`.
+* Go to [https://github.com/MS-ASE-2020/team-ai-vis/pulls](https://github.com/MS-ASE-2020/team-ai-vis/pulls)
+* Click `New pull request`
+* Set the compare branch as `dev` and click `Create pull request`
+* Select some reviewers if necessary
+* Wait for all reviewers' approvals
+* Click `Rebase and merge`
