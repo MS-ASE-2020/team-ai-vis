@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import Clips from '@/components/Clips.vue'
-import Configure from '@/components/Configure.vue'
-import Library from '@/components/Library.vue'
-import NavMenu from '@/components/NavMenu.vue'
+import Clips from '@/components/Clips.vue';
+import Configure from '@/components/Configure.vue';
+import Library from '@/components/Library.vue';
+import NavMenu from '@/components/NavMenu.vue';
 
 export default {
   name: 'App',
@@ -31,7 +31,7 @@ export default {
     Library,
     NavMenu
   }
-}
+};
 </script>
 
 <style>
@@ -62,19 +62,16 @@ export default {
 }
 .el-main {
   padding: 0 0 0 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 .clips {
-  flex-grow: 1;
+  height: calc(50vh - 120px);
   margin-bottom: 20px;
   border: 1px solid #d7dae2;
   border-radius: 4px;
   padding: 20px;
 }
 .configure {
-  flex-grow: 1;
+  height: calc(50vh - 120px);
   border: 1px solid #d7dae2;
   border-radius: 4px;
   padding: 20px;
