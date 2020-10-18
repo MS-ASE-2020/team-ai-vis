@@ -10,7 +10,7 @@
         </el-aside>
         <el-main>
           <clips></clips>
-          <configure></configure>
+          <config></config>
         </el-main>
       </el-container>
     </el-container>
@@ -19,7 +19,7 @@
 
 <script>
 import Clips from '@/components/Clips.vue';
-import Configure from '@/components/Configure.vue';
+import Config from '@/components/Config.vue';
 import Library from '@/components/Library.vue';
 import NavMenu from '@/components/NavMenu.vue';
 
@@ -27,7 +27,7 @@ export default {
   name: 'App',
   components: {
     Clips,
-    Configure,
+    Config,
     Library,
     NavMenu
   }
@@ -70,7 +70,7 @@ export default {
   border-radius: 4px;
   padding: 20px;
 }
-.configure {
+.config {
   height: calc(50vh - 120px);
   border: 1px solid #d7dae2;
   border-radius: 4px;
