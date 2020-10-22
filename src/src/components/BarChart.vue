@@ -60,7 +60,10 @@ export default {
         .text(d => d)
         .attr('y', d => yScale(d) + 20)
         .attr('x', (d, i) => barWidth * i)
-        .attr('fill', 'blue')
+        .attr("fill","steelblue")         //初始颜色为红色
+        .transition()               //启动过渡
+        .attr("fill","red")   //终止颜色为铁蓝色
+ 
  
       console.log(barChart, text, yScale)
     }
