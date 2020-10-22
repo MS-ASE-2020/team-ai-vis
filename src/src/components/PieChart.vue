@@ -11,7 +11,7 @@ export default {
   data() {
     return {
       gdp: [
-        { country: "USA", value: 20.5 },
+        { country: "USA", value: 300 },
         { country: "China", value: 13.4 },
         { country: "Germany", value: 4.0 },
         { country: "Japan", value: 4.9 },
