@@ -1,5 +1,5 @@
 <template>
-  <div class="pie-chart">
+  <div class="line-chart">
   </div>
 </template>
 
@@ -7,9 +7,10 @@
 import * as d3 from 'd3';
 
 export default {
-  name: 'PieChart',
+  name: 'LineChart',
   data() {
     return {
+      dataset:[11,35,23,78,55,18,98,100,22,65],
       gdp: [
         { country: "USA", value: 90 },
         { country: "China", value: 13.4 },
@@ -20,73 +21,74 @@ export default {
     };
   },
   mounted() {
-    this.generateArc();
+    this.generateLine();
   },
   methods: {
-    generateArc() {
-      const w = 500;
-      const h = 500;
+    generateLine() {
+      //定义画布
+      var width=500;
+      var height=500;
+  
+      var svg=d3.select("line-chart")
+                .append("svg")
+                .attr("width",width)
+                .attr("height",height);
+    //   //定义内边距
+    var padding={left:20,right:20,top:10,bottom:10};
+     
+     //数据
+    //  var this.dataset=[11,35,23,78,55,18,98,100,22,65]
+     //定义比例尺
+     var xscale=d3.scaleLinear()
+                  .domain([0,this.dataset.length-1])
+                  .range([0,width-padding.left-padding.right])
+     var yscale=d3.scaleLinear()
+                  .domain([0,d3.max(this.dataset)])
+                  .range([height-padding.top-padding.bottom,0])
+    //绘制坐标轴
+     var xAxis=d3.axisBottom()
+                 .scale(xscale)
+                 
+     var yAxis=d3.axisLeft()
+                 .scale(yscale)
 
-      const svg = d3
-        .select(".pie-chart")
-        .append("svg")
-        .attr("width", w)
-        .attr("height", h);
-
-      const sortedGDP = this.gdp.sort((a, b) => (a.value > b.value ? 1 : -1));
-      const color = d3.scaleOrdinal(d3.schemeDark2);
-
-      const max_gdp = d3.max(sortedGDP, o => o.value);
-
-      const angleScale = d3
-        .scaleLinear()
-        .domain([0, max_gdp])
-        .range([0, 1.5 * Math.PI]);
-
-      const arc = d3
-        .arc()
-        .innerRadius((d, i) => (i + 1) * 15)
-        .outerRadius((d, i) => (i + 2) * 15)
-        .startAngle(angleScale(0))
-        .endAngle(d => angleScale(d.value));
-
-      const g = svg.append("g");
-
-      g.selectAll("path")
-        .data(sortedGDP)
-        .enter()
-        .append("path")
-        .attr("d", arc)
-        .attr("fill", (d, i) => color(i))
-        .attr("stroke", "#FFF")
-        .attr("stroke-width", "1px")
-        .on("mouseenter", function() {
-          d3.select(this)
-            .transition()
-            .duration(200)
-            .attr("opacity", 0.5);
-        })
-        .on("mouseout", function() {
-          d3.select(this)
-            .transition()
-            .duration(200)
-            .attr("opacity", 1);
-        });
-
-      g.selectAll("text")
-        .data(this.gdp)
-        .enter()
-        .append("text")
-        .text(d => `${d.country} -  ${d.value} Trillion`)
-        .attr("x", -120)
-        .attr("dy", -4)
-        .attr("y", (d, i) => -(i + 1) * 15)
-        .attr("font-size", "12px");
-
-      g.attr("transform", "translate(150, 120)");
+    d3.select("svg")
+      .append("g")
+      .attr("transform","translate(" + padding.left + "," + (height - padding.bottom) + ")")
+      .call(xAxis)
+      .attr("class","axis")
+      
+     d3.select("svg")
+      .append("g")
+      .attr("transform","translate("+padding.left+","+padding.top+")")
+      .call(yAxis)
+      .attr("class","axis")
+ 
+     
+     //绘制图形
+     var line_generator=d3.line()
+                          .x(function(d,i){
+                              return xscale(i)//x轴的点用数据下标表示
+                         })
+                          .y(function(d){
+                              return yscale(d)
+                         });
+                          //.interpolate("linear")
+     var g=svg.append("g")
+             .attr("transform","translate("+padding.left+","+padding.top+")")
+ 
+     
+     g.append("path")
+       .attr("d",line_generator(this.dataset))
+       .attr('stroke', 'black')
+       .attr('stroke-width', 1)
+       .attr("fill","none")
     }
   }
 };
+
+
+
 </script>
 
 <style scoped>
