@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <svg class="bar-chart"></svg>
+  <div class="bar-chart">
   </div>
 </template>
 
@@ -11,15 +10,16 @@ export default {
   data () {
     return {
       dataset: [100, 80, 78, 98, 93, 82],
-      svgWidth: 500,
-      svgHeight: 300,
+      svgWidth: 300,
+      svgHeight: 250,
       barPadding: 5
     }
   },
   methods: {
     initChart () {
       let barWidth = (this.svgWidth / this.dataset.length)
-      let svg = d3.select('svg')
+      let svg = d3.select(".bar-chart")
+        .append("svg")
         .attr('width', this.svgWidth)
         .attr('height', this.svgHeight)
  
