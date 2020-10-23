@@ -1,7 +1,6 @@
 <template>
   <div class="geo-map">
-    <canvas width="960" height="500"></canvas>
-    <el-button type="primary" @click="generateMap()">Export</el-button>
+    <svg width="960" height="500"></svg>
   </div>
 </template>
 
@@ -15,39 +14,28 @@ export default {
   mounted() {
     //this.generateArc();
     console.log('mounted');
-    // this.generateMap();
+    this.generateMap();
   },
   methods: {
-    generateMap(){
-      var canvas = document.querySelector("canvas"),
-          context = canvas.getContext("2d"),
-          width = +canvas.width,
-          height = +canvas.height;
+    async generateMap(){
+      var svg = d3.select("svg"),
+          canvas = document.createElement("canvas"),
+          width = canvas.width = +svg.attr("width"),
+          height = canvas.height = +svg.attr("height"),
+          context = canvas.getContext("2d");
 
-      var projection = d3.geoOrthographic().scale(195).translate([width / 2, height / 2]).precision(0.1);
+      var projection = d3.geoOrthographic()
+        .scale(195)
+        .translate([width / 2, height / 2])
+        .precision(0.1);
 
-      var path = d3.geoPath().projection(projection).context(context);
+      var path = d3.geoPath().projection(projection);
 
       var world = require("@/assets/world-110m.json");
 
-      var land = topojson.feature(world, world.objects.land),
-          mesh = topojson.mesh(world, world.objects.countries, function(a, b) {
-            return a !== b;
-          });
-
       var data = [],
         stream = canvas.captureStream(),
-        recorder = new MediaRecorder(stream, { mimeType: "video/webm" });
-
-      var timer = d3.timer(function(t) {
-        t = t / 3000;
-        if (t < 1) {
-          draw(t);
-        } else {
-          recorder.stop();
-          timer.stop();
-        }
-      });
+        recorder = new MediaRecorder(stream, { videoBitsPerSecond: 10*1920*1080, mimeType: "video/webm; codecs=H264" });
 
       recorder.ondataavailable = function(event) {
         if (event.data && event.data.size) {
@@ -57,7 +45,7 @@ export default {
 
       recorder.onstop = () => {
         var url = URL.createObjectURL(new Blob(data, { type: "video/webm" }));
-        d3.select("canvas").remove();
+        d3.selectAll("canvas, svg").remove();
         d3.select(".geo-map")
           .append("video")
           .attr("src", url)
@@ -66,36 +54,110 @@ export default {
         d3.select(".geo-map")
           .append("a")
           .attr("href", url)
-          .attr("download", "video.webm")
+          .attr("download", "video.mp4")
           .text("Click here to download the file");
       };
 
-      recorder.start();
+      svg.append("rect")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("fill", "#fff");
 
-      function draw(t) {
-        projection.rotate([360 * t]);
+      svg.append("path")
+        .datum({ type: "Sphere" })
+        .attr("stroke", "#222")
+        .attr("fill", "none");
 
-        context.lineWidth = 1;
+      svg.append("path")
+        .datum(topojson.feature(world, world.objects.land))
+        .attr("fill", "#222")
+        .attr("stroke", "none");
 
-        context.fillStyle = "#fff";
-        context.fillRect(0, 0, width, height);
+      svg.append("path")
+        .datum(topojson.mesh(world, world.objects.countries, function(a, b) {
+          return a !== b;
+        }))
+        .attr("fill", "none")
+        .attr("stroke", "#fff");
 
-        context.strokeStyle = "#222";
-        context.beginPath();
-        path({ type: "Sphere" });
-        context.stroke();
+      
+      // 并发数为1
+      // var queue = d3.queue(1);
+      // var promises = [];
 
-        context.fillStyle = "#222";
-        context.beginPath();
-        path(land);
-        context.fill();
 
-        context.strokeStyle = "#fff";
-        context.beginPath();
-        path(mesh);
-        context.stroke();
+
+      // d3.range(120).forEach(function(frame){
+      //   console.lgo(frame);
+      //   // task, args
+      //   // queue.defer(drawFrame, frame / 120);
+
+      // });
+
+      let frames = [];
+
+      for(let i = 0; i < 120; i++) {
+        let frame = await new Promise((resolve) => {
+          projection.rotate([360 * i / 120]);
+          svg.selectAll('path').attr('d', path);
+
+          var img = new Image(),
+              serialized = new XMLSerializer().serializeToString(svg.node()),
+              url = URL.createObjectURL(new Blob([serialized], {type: "image/svg+xml"}));
+
+          img.onload = function(){
+            resolve(img);
+          };
+
+          img.src = url;
+
+          });
+
+        frames.push(frame);
       }
-    }
+
+      recorder.start();
+      drawFrame();
+
+      function drawFrame() {
+        if (frames.length) {
+          context.drawImage(frames.shift(), 0, 0, width, height);
+          requestAnimationFrame(drawFrame);
+        } else {
+          recorder.stop();
+        }
+      }
+
+      // queue.awaitAll(function(err, frames){
+      //   recorder.start();
+      //   drawFrame();
+
+      //   function drawFrame() {
+      //     if (frames.length) {
+      //       context.drawImage(frames.shift(), 0, 0, width, height);
+      //       requestAnimationFrame(drawFrame);
+      //     } else {
+      //       recorder.stop();
+      //     }
+      //   }
+      // });
+
+      // async function drawFrame(t, cb) {
+      //   projection.rotate([360 * t]);
+      //   svg.selectAll("path").attr("d", path);
+
+      //   var img = new Image(),
+      //       serialized = new XMLSerializer().serializeToString(svg.node()),
+      //       url = URL.createObjectURL(new Blob([serialized], {type: "image/svg+xml"}));
+
+      //   img.onload = function(){
+      //     cb(null, img);
+      //   };
+
+      //   img.src = url;
+
+      // }
+    },
   },
 };    
 
