@@ -3,16 +3,16 @@
     Clips Library
     <el-col>
       <el-row>
-        <el-button type="primary" @click="$router.push('barchart').catch(err => err)">BarChart</el-button>
+        <el-button type="primary" @click="$store.commit('addClip', 'BarChart')">BarChart</el-button>
       </el-row>
       <el-row>
-        <el-button type="primary" @click="$router.push('geomap').catch(err => err)">GeoMap</el-button>
+        <el-button type="primary" @click="$store.commit('addClip', 'GeoMap')">GeoMap</el-button>
       </el-row>
       <el-row>
-        <el-button type="primary" @click="$router.push('linechart').catch(err => err)">LineChart</el-button>
+        <el-button type="primary" @click="$store.commit('addClip', 'LineChart')">LineChart</el-button>
       </el-row>
       <el-row>
-        <el-button type="primary" @click="$router.push('piechart').catch(err => err)">PieChart</el-button>
+        <el-button type="primary" @click="$store.commit('addClip', 'PieChart')">PieChart</el-button>
       </el-row>
     </el-col>
   </div>
