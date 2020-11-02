@@ -1,6 +1,6 @@
 <template>
   <div class="config">
-    Configuration
+    <div class="title">Configuration</div>
     <el-upload
       action=""
       :limit="1"
@@ -11,12 +11,38 @@
       :auto-upload="false">
       <el-button slot="trigger" type="primary">Upload</el-button>
     </el-upload>
+    <div class="config-detail">
+      <div v-if="$store.state.focusedClip === null"></div>
+      <div v-else-if="$store.state.focusedClip.type === 'BarChart'">
+        <bar-chart-config></bar-chart-config>
+      </div>
+      <div v-else-if="$store.state.focusedClip.type === 'GeoMap'">
+        <geo-map-config></geo-map-config>
+      </div>
+      <div v-else-if="$store.state.focusedClip.type === 'LineChart'">
+        <line-chart-config></line-chart-config>
+      </div>
+      <div v-else-if="$store.state.focusedClip.type === 'PieChart'">
+        <pie-chart-config></pie-chart-config>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import BarChartConfig from '@/components/BarChartConfig.vue';
+import GeoMapConfig from '@/components/GeoMapConfig.vue';
+import LineChartConfig from '@/components/LineChartConfig.vue';
+import PieChartConfig from '@/components/PieChartConfig.vue';
+
 export default {
   name: 'Config',
+  components: {
+    BarChartConfig,
+    GeoMapConfig,
+    LineChartConfig,
+    PieChartConfig
+  },
   data() {
     return {
       fileList: []
@@ -51,4 +77,7 @@ export default {
 </script>
 
 <style scoped>
+.title {
+  margin-bottom: 15px;
+}
 </style>

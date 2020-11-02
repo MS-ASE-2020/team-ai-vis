@@ -25,8 +25,8 @@ const store = new Vuex.Store({
         case 'PieChart': 
           break;
       }
+      state.focusedClip = clip;
       state.clips.push(clip);
-      console.log(state.clips);
     },
     updateFocusedClip(state, clip) {
       state.focusedClip = clip;
