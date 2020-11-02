@@ -1,5 +1,5 @@
 <template>
-  <div class="pie-chart">
+  <div class="pie-chart" :id="id">
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
   data() {
     return {
       gdp: [
-        { country: "USA", value: 300 },
+        { country: "USA", value: 20 },
         { country: "China", value: 13.4 },
         { country: "Germany", value: 4.0 },
         { country: "Japan", value: 4.9 },
@@ -19,16 +19,20 @@ export default {
       ]
     };
   },
+  props: {
+    clip: Object,
+    id: String
+  },
   mounted() {
     this.generateArc();
   },
   methods: {
     generateArc() {
-      const w = 500;
-      const h = 500;
+      const w = "250px";
+      const h = "250px";
 
       const svg = d3
-        .select(".pie-chart")
+        .select(`#${this.id}`)
         .append("svg")
         .attr("width", w)
         .attr("height", h);
@@ -83,11 +87,17 @@ export default {
         .attr("y", (d, i) => -(i + 1) * 15)
         .attr("font-size", "12px");
 
-      g.attr("transform", "translate(150, 120)");
+      g.attr("transform", "translate(125, 125)");
     }
   }
 };
 </script>
 
 <style scoped>
+.pie-chart {
+  height: 250px;
+  width: 250px;
+  border: 1px solid #d7dae2;
+  border-radius: 4px;
+}
 </style>

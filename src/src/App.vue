@@ -64,14 +64,14 @@ export default {
   padding: 0 0 0 20px;
 }
 .clips {
-  height: calc(50vh - 120px);
+  height: 295px;
   margin-bottom: 20px;
   border: 1px solid #d7dae2;
   border-radius: 4px;
   padding: 20px;
 }
 .config {
-  height: calc(50vh - 120px);
+  height: calc(100vh - 535px);
   border: 1px solid #d7dae2;
   border-radius: 4px;
   padding: 20px;
