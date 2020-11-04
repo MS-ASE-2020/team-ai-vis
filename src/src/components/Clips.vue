@@ -3,16 +3,20 @@
     <div class="title">My Clips</div>
     <div class="clips-list">
       <div v-for="(clip, index) in $store.state.clips" :key="index">
-        <div v-if="clip.type === 'BarChart'">
+        <div v-if="clip.type === 'BarChart'" @click="$store.commit('updateFocusedClip', clip)" 
+            :class="{ active: $store.state.focusedClip === clip }">
           <bar-chart :clip="clip" :id="clip.type + index"></bar-chart>
         </div>
-        <div v-else-if="clip.type === 'GeoMap'">
+        <div v-else-if="clip.type === 'GeoMap'" @click="$store.commit('updateFocusedClip', clip)" 
+            :class="{ active: $store.state.focusedClip === clip }">
           <geo-map :clip="clip" :id="clip.type + index"></geo-map>
         </div>
-        <div v-else-if="clip.type === 'LineChart'">
+        <div v-else-if="clip.type === 'LineChart'" @click="$store.commit('updateFocusedClip', clip)" 
+            :class="{ active: $store.state.focusedClip === clip }">
           <line-chart :clip="clip" :id="clip.type + index"></line-chart>
         </div>
-        <div v-else-if="clip.type === 'PieChart'">
+        <div v-else-if="clip.type === 'PieChart'" @click="$store.commit('updateFocusedClip', clip)" 
+            :class="{ active: $store.state.focusedClip === clip }">
           <pie-chart :clip="clip" :id="clip.type + index"></pie-chart>
         </div>
       </div>
@@ -47,10 +51,20 @@ export default {
   overflow-x: scroll;
 	overflow-y: hidden;
 }
+.clips-list > * {
+  transition: .3s;
+  cursor: pointer;
+}
 .clips-list > :not(:last-child) {
-  margin: 5px 20px 0 0;
+  margin: 5px 20px 5px 5px;
 }
 .clips-list > :last-child {
-  margin: 5px 0 0 0;
+  margin: 5px 5px 5px 5px;
+}
+.clips-list.pie-chart:focus, .pie-chart:hover {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+}
+.active {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
 }
 </style>
