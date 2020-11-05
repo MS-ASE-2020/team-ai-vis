@@ -48,8 +48,7 @@ export default {
 .clips-list {
   display: flex;
   flex-wrap: nowrap;
-  overflow-x: scroll;
-	overflow-y: hidden;
+  overflow-x: auto;
 }
 .clips-list > * {
   transition: .3s;
