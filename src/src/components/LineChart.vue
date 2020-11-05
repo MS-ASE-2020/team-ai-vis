@@ -1,19 +1,23 @@
 <template>
-  <div class="bar-chart">
+  <div class="line-chart" :id="id">
   </div>
 </template>
 
 <script>
 import * as d3 from 'd3'
 export default {
-  name: 'BarChart',
+  name: 'LineChart',
   data () {
     return {
       dataset: [100, 80, 78, 98, 93, 82],
-      svgWidth: 300,
+      svgWidth: 250,
       svgHeight: 250,
-      barPadding: 5
+      barPadding: 0
     }
+  },
+  props: {
+    clip: Object,
+    id: String
   },
   methods: {
     initChart () {
@@ -25,8 +29,8 @@ var max = d3.max(dataset, function(d) {
   return d[1];
 })
 // 图表的宽度和高度
-var width = 400;
-var height = 400;
+var width = 250;
+var height = 250;
 // 预留给轴线的距离
 var padding = { top: 50, right: 50, bottom: 50, left: 50 };
 
@@ -37,7 +41,7 @@ var yScale = d3.scaleLinear()
               .domain([0, max])
               .range([height - padding.top - padding.bottom, 0]);
 
-var svg = d3.select(".bar-chart")
+var svg = d3.select(`#${this.id}`)
             .append('svg')
             .attr('width', width + 'px')
             .attr('height', height + 'px');
@@ -94,7 +98,12 @@ svg.append('g')
 </script>
  
 <style scoped>
- 
+ .line-chart {
+  height: 250px;
+  width: 250px;
+  border: 1px solid #d7dae2;
+  border-radius: 4px;
+}
 </style>
 
 
