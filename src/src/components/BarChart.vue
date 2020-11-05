@@ -1,6 +1,5 @@
 <template>
   <div class="bar-chart" :id="id">
-    {{ clip.config.barPadding }}
   </div>
 </template>
 
@@ -26,7 +25,7 @@ export default {
       let barWidth = this.svgWidth / data.values.length;
 
       d3.select(`#${this.id}`).select('svg').remove();
-      
+
       let svg = d3
         .select(`#${this.id}`)
         .append("svg")
