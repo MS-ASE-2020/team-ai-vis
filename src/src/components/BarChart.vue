@@ -1,5 +1,5 @@
 <template>
-  <div class="bar-chart">
+  <div class="bar-chart" :id="id">
   </div>
 </template>
 
@@ -10,15 +10,19 @@ export default {
   data () {
     return {
       dataset: [100, 80, 78, 98, 93, 82],
-      svgWidth: 300,
+      svgWidth: 250,
       svgHeight: 250,
-      barPadding: 5
+      barPadding: 0
     }
+  },
+  props: {
+    clip: Object,
+    id: String
   },
   methods: {
     initChart () {
       let barWidth = (this.svgWidth / this.dataset.length)
-      let svg = d3.select(".bar-chart")
+      let svg = d3.select(`#${this.id}`)
         .append("svg")
         .attr('width', this.svgWidth)
         .attr('height', this.svgHeight)
@@ -52,7 +56,6 @@ export default {
         .enter()
         .append('text')
         .transition()   //开启过渡效果
-    
         .delay(function(d,i){ //指定延迟的时间，表示一定时间后才开始转变，单位同样为毫秒
             return 200*i;
         })
@@ -63,9 +66,10 @@ export default {
         .attr("fill","steelblue")         //初始颜色为红色
         .transition()               //启动过渡
         .attr("fill","red")   //终止颜色为铁蓝色
+        console.log(barChart);
+        console.log(text);
  
- 
-      console.log(barChart, text, yScale)
+      
     }
   },
   mounted () {
@@ -73,6 +77,19 @@ export default {
   }
 }
 </script>
+ 
+<style scoped>
+ .bar-chart {
+  height: 250px;
+  width: 250px;
+  border: 1px solid #d7dae2;
+  border-radius: 4px;
+}
+ 
+</style>his.initChart()
+  }
+}
+
  
 <style scoped>
  
