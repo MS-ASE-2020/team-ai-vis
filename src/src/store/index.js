@@ -17,6 +17,22 @@ const store = new Vuex.Store({
       }
       switch(type) {
         case 'BarChart':
+          clip.data = {
+            values: [ 100, 80, 78, 98, 93, 82 ]
+          };
+          clip.config = {
+            delay: 200,
+            duration: 1000,
+            barPadding: 0,
+            bar: {
+              beginColor: 'red',
+              endColor: 'steelblue'
+            },
+            text: {
+              beginColor: 'steelblue',
+              endColor: 'red'
+            }
+          };
           break;
         case 'GeoMap': 
           break;
