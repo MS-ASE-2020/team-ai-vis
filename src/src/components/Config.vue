@@ -1,29 +1,33 @@
 <template>
   <div class="config">
     <div class="title">Configuration</div>
-    <el-upload
-      action=""
-      :limit="1"
-      :on-change="handleChange"
-      :on-remove="handleRemove"
-      :on-exceed="handleExceed"
-      :file-list="fileList"
-      :auto-upload="false">
-      <el-button slot="trigger" type="primary">Upload</el-button>
-    </el-upload>
-    <div class="config-detail">
-      <div v-if="$store.state.focusedClip === null"></div>
-      <div v-else-if="$store.state.focusedClip.type === 'BarChart'">
-        <bar-chart-config></bar-chart-config>
+    <div v-if="$store.state.focusedClip !== null">
+      <div class="upload">
+        <el-upload
+          action=""
+          :limit="1"
+          :on-change="handleChange"
+          :on-remove="handleRemove"
+          :on-exceed="handleExceed"
+          :file-list="fileList"
+          :auto-upload="false"
+          :show-file-list="false">
+          <el-button slot="trigger" type="primary" size="small">Upload data</el-button>
+        </el-upload>
       </div>
-      <div v-else-if="$store.state.focusedClip.type === 'GeoMap'">
-        <geo-map-config></geo-map-config>
-      </div>
-      <div v-else-if="$store.state.focusedClip.type === 'LineChart'">
-        <line-chart-config></line-chart-config>
-      </div>
-      <div v-else-if="$store.state.focusedClip.type === 'PieChart'">
-        <pie-chart-config></pie-chart-config>
+      <div class="config-detail">
+        <div v-if="$store.state.focusedClip.type === 'BarChart'">
+          <bar-chart-config></bar-chart-config>
+        </div>
+        <div v-else-if="$store.state.focusedClip.type === 'GeoMap'">
+          <geo-map-config></geo-map-config>
+        </div>
+        <div v-else-if="$store.state.focusedClip.type === 'LineChart'">
+          <line-chart-config></line-chart-config>
+        </div>
+        <div v-else-if="$store.state.focusedClip.type === 'PieChart'">
+          <pie-chart-config></pie-chart-config>
+        </div>
       </div>
     </div>
   </div>
@@ -56,8 +60,10 @@ export default {
       console.log(fileList);
       const reader = new FileReader();
       reader.readAsText(file.raw);
+      var vm = this;
       reader.onload = function (e) {
-        console.log(e.target.result);
+        var data = JSON.parse(e.target.result);
+        vm.$store.commit('updateData', data);
       };
     },
     handleExceed(files, fileList) {
@@ -78,6 +84,9 @@ export default {
 
 <style scoped>
 .title {
+  margin-bottom: 15px;
+}
+.upload {
   margin-bottom: 15px;
 }
 </style>
