@@ -10,34 +10,28 @@ export default {
   name: 'PieChart',
   data() {
     return {
-      gdp: [
-        { country: "USA", value: 20 },
-        { country: "China", value: 13.4 },
-        { country: "Germany", value: 4.0 },
-        { country: "Japan", value: 4.9 },
-        { country: "France", value: 2.8 }
-      ]
+      svgWidth: 250,
+      svgHeight: 250,
     };
   },
   props: {
     clip: Object,
     id: String
   },
-  mounted() {
-    this.generateArc();
-  },
   methods: {
     generateArc() {
-      const w = "250px";
-      const h = "250px";
-
+      var w = this.svgWidth;
+      var h = this.svgHeight;
+      var data = this.clip.data;
+      var config = this.clip.config; 
+      d3.select(`#${this.id}`).select('svg').remove();
       const svg = d3
         .select(`#${this.id}`)
         .append("svg")
         .attr("width", w)
         .attr("height", h);
 
-      const sortedGDP = this.gdp.sort((a, b) => (a.value > b.value ? 1 : -1));
+      const sortedGDP = data.values.sort((a, b) => (a.value > b.value ? 1 : -1));
       const color = d3.scaleOrdinal(d3.schemeDark2);
 
       const max_gdp = d3.max(sortedGDP, o => o.value);
@@ -45,7 +39,7 @@ export default {
       const angleScale = d3
         .scaleLinear()
         .domain([0, max_gdp])
-        .range([0, 1.5 * Math.PI]);
+        .range([0, config.range / 180.0 * Math.PI]);
 
       const arc = d3
         .arc()
@@ -64,32 +58,42 @@ export default {
         .attr("fill", (d, i) => color(i))
         .attr("stroke", "#FFF")
         .attr("stroke-width", "1px")
-        .on("mouseenter", function() {
-          d3.select(this)
-            .transition()
-            .duration(200)
-            .attr("opacity", 0.5);
+        .transition() //开启过渡效果
+        .delay(function (d, i) {
+          //指定延迟的时间，表示一定时间后才开始转变，单位同样为毫秒
+          return config.delay * i;
         })
-        .on("mouseout", function() {
-          d3.select(this)
-            .transition()
-            .duration(200)
-            .attr("opacity", 1);
-        });
+        .duration(config.duration) //执行动画的时间--毫秒
+        .transition() //启动过渡
+        .attr("opacity",config.opacity / 10.0);
+        //.ease(d3.easeBounceIn)
+
+
 
       g.selectAll("text")
-        .data(this.gdp)
+        .data(data.values)
         .enter()
         .append("text")
         .text(d => `${d.country} -  ${d.value} Trillion`)
         .attr("x", -120)
         .attr("dy", -4)
         .attr("y", (d, i) => -(i + 1) * 15)
-        .attr("font-size", "12px");
-
+        .attr("font-size", "12px")
       g.attr("transform", "translate(125, 125)");
-    }
-  }
+    },
+  },
+    mounted() {
+    this.generateArc();
+  },
+  watch: {
+    clip: {
+      deep: true,
+      handler() {
+        console.log(this.clip);
+        this.generateArc();
+      },
+    },
+  },
 };
 </script>
 
