@@ -30,8 +30,8 @@ export default {
         .append("svg")
         .attr("width", w)
         .attr("height", h);
-
-      const sortedGDP = data.values.sort((a, b) => (a.value > b.value ? 1 : -1));
+      var arr = Array.from(data.values);
+      const sortedGDP = arr.sort((a, b) => (a.value > b.value ? 1 : -1));
       const color = d3.scaleOrdinal(d3.schemeDark2);
 
       const max_gdp = d3.max(sortedGDP, o => o.value);
