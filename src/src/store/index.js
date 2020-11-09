@@ -39,22 +39,7 @@ const store = new Vuex.Store({
         case 'LineChart':
           break;
         case 'PieChart': 
-        clip.data = {
-          values: [
-            { country: "USA", value: 20 },
-            { country: "China", value: 13.4 },
-            { country: "Germany", value: 4.0 },
-            { country: "Japan", value: 4.9 },
-            { country: "France", value: 2.8 }
-          ]
-        };
-        clip.config = {
-          delay: 200,
-          duration: 1000,
-          range: 180,
-          opacity: 8,
-        };
-        break;
+          break;
       }
       state.focusedClip = clip;
       state.clips.push(clip);
