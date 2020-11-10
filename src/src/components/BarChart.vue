@@ -19,23 +19,27 @@ export default {
   },
   methods: {
     initChart() {
+      var root = d3.select(`#${this.id}`);
+      var width = this.svgWidth;
+      var height = this.svgHeight; 
       var data = this.clip.data;
       var config = this.clip.config;
+      this.renderClip(root, width, height, data, config);
+    },
+    renderClip(root, width, height, data, config) {
+      root.select('svg').remove();
 
-      let barWidth = this.svgWidth / data.values.length;
+      let barWidth = width / data.values.length;
 
-      d3.select(`#${this.id}`).select('svg').remove();
-
-      let svg = d3
-        .select(`#${this.id}`)
+      let svg = root
         .append("svg")
-        .attr("width", this.svgWidth)
-        .attr("height", this.svgHeight);
+        .attr("width", width)
+        .attr("height", height);
 
       let yScale = d3
         .scaleLinear()
         .domain([0, d3.max(data.values)])
-        .range([this.svgHeight - 20, 0]);
+        .range([height - 20, 0]);
 
       svg
         .selectAll("rect")
@@ -53,7 +57,7 @@ export default {
         .duration(config.duration) //执行动画的时间--毫秒
         //.ease(d3.easeBounceIn)
         .attr("y", (d) => yScale(d))
-        .attr("height", (d) => this.svgHeight - yScale(d))
+        .attr("height", (d) => height - yScale(d))
         .attr("width", barWidth - config.barPadding)
         .attr("fill", config.bar.beginColor) //初始颜色为红色
         .transition() //启动过渡
@@ -76,7 +80,10 @@ export default {
         .attr("fill", config.text.beginColor) //初始颜色为红色
         .transition() //启动过渡
         .attr("fill", config.text.endColor); //终止颜色为铁蓝色
-    },
+      
+      var duration = config.delay * data.values.length + config.duration * 2;
+      return duration;
+    }
   },
   mounted() {
     this.initChart();
