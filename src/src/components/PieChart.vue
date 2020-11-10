@@ -29,8 +29,8 @@ export default {
     },
     renderClip(root,width,height,data,config){
       root.select('svg').remove();
-      const svg = d3
-        .select(`#${this.id}`)
+      const svg = root
+        //.select(`#${this.id}`)
         .append("svg")
         .attr("width", width)
         .attr("height", height);
