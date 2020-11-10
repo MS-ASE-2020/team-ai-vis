@@ -35,7 +35,7 @@ import BarChart from '@/components/BarChart.vue';
 import GeoMap from '@/components/GeoMap.vue';
 import LineChart from '@/components/LineChart.vue';
 import PieChart from '@/components/PieChart.vue';
-import * as d3 from "d3";
+import * as d3 from 'd3';
 
 export default {
   name: 'Clips',
@@ -47,25 +47,106 @@ export default {
   },
   data() {
     return {
-      isExporting: false
+      isExporting: false,
+      renderStatus: 'none',
+      frames: [],
+      frameWidth: 500,
+      frameHeight: 500,
+      recorder: null,
+      recordedData: [],
+      context: null
     };
   },
   methods: {
     exportVideo() {
       this.isExporting = true;
-      setTimeout(() => { this.renderVideo() }, 0);
+      this.renderStatus = 'none';
+      setTimeout(() => {
+        this.startRecord(1000);
+        this.renderVideo();
+      }, 0);
     },
     async renderVideo() {
       for (const [index, clip] of this.$store.state.clips.entries())
       {
         var root = d3.select('.video');
-        var width = 500;
-        var height = 500;
+        var width = this.frameWidth;
+        var height = this.frameHeight;
         var data = clip.data;
         var config = clip.config;
         var duration = this.$refs[clip.type + index][0].renderClip(root, width, height, data, config);
-        console.log(clip);
+        this.renderStatus = 'ongoing';
+        // console.log(clip);
         await new Promise((resolve) => setTimeout(resolve, duration));
+      }
+      this.renderStatus = 'finished';
+    },
+    startRecord(interval) {
+      var canvas = document.createElement("canvas");
+      canvas.width = this.frameWidth;
+      canvas.height = this.frameHeight;
+      this.context = canvas.getContext("2d");
+      var stream = canvas.captureStream();
+      this.recorder = new MediaRecorder(stream, {
+          videoBitsPerSecond: 10 * 1920 * 1080,
+          mimeType: "video/webm; codecs=H264",
+        });
+      
+      var vm = this;
+
+      this.recorder.ondataavailable = function (event) {
+        if (event.data && event.data.size) {
+          vm.recordedData.push(event.data);
+        }
+      };
+
+      this.recorder.onstop = () => {
+        var blob = new Blob(vm.recordedData, { type: "video/webm" });
+        var url = URL.createObjectURL(blob);
+        d3.select('.video')
+          .append("a")
+          .attr("href", url)
+          .attr("download", "video.webm")
+          .text("Click here to download the file");
+      };
+
+      this.frames = [];
+      this.snapshot(interval);
+    },
+    async snapshot(interval) {
+      if (this.renderStatus === 'finished') return;
+      else if (this.renderStatus === 'ongoing')
+      {
+        let frame = await new Promise((resolve) => {
+          var svg = d3.select('.video').select("svg");
+          var serialized = new XMLSerializer().serializeToString(svg.node());
+          var blob = new Blob([serialized], { type: "image/svg+xml" });
+          var url = URL.createObjectURL(blob);
+          var img = new Image();
+          img.onload = function() {
+            resolve(img);
+          };
+          img.src = url;
+        });
+        this.frames.push(frame);
+      }
+      setTimeout(this.snapshot, interval);
+    }
+  },
+  watch: {
+    renderStatus: function(newValue) {
+      var vm = this;
+      function drawFrame() {
+        if (vm.frames.length) {
+          vm.context.drawImage(vm.frames.shift(), 0, 0, vm.frameWidth, vm.frameHeight);
+          requestAnimationFrame(drawFrame);
+        } else {
+          vm.recorder.stop();
+        }
+      }
+      if (newValue === 'finished') {
+        vm.recorder.start();
+        drawFrame();
       }
     }
   }
