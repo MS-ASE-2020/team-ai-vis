@@ -40,12 +40,19 @@ export default {
         .scaleLinear()
         .domain([0, d3.max(data.values)])
         .range([height - 20, 0]);
+      
+      svg
+        .append("rect")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("fill", "#fff");
 
       svg
-        .selectAll("rect")
+        .selectAll("rect.bar")
         .data(data.values)
         .enter()
         .append("rect")
+        .attr("class", "bar")
         .attr("x", (d, i) => barWidth * i)
         .attr("height", "0")
         .attr("width", "0") //矩形的宽，过渡动画前
