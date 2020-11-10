@@ -19,17 +19,21 @@ export default {
     id: String
   },
   methods: {
-    generateArc() {
-      var w = this.svgWidth;
-      var h = this.svgHeight;
+    initChart() {
+      var root = d3.select(`#${this.id}`);
+      var width = this.svgWidth;
+      var height = this.svgHeight; 
       var data = this.clip.data;
-      var config = this.clip.config; 
-      d3.select(`#${this.id}`).select('svg').remove();
+      var config = this.clip.config;
+      this.renderClip(root, width, height, data, config);
+    },
+    renderClip(root,width,height,data,config){
+      root.select('svg').remove();
       const svg = d3
         .select(`#${this.id}`)
         .append("svg")
-        .attr("width", w)
-        .attr("height", h);
+        .attr("width", width)
+        .attr("height", height);
       var arr = Array.from(data.values);
       const sortedGDP = arr.sort((a, b) => (a.value > b.value ? 1 : -1));
       const color = d3.scaleOrdinal(d3.schemeDark2);
@@ -80,17 +84,19 @@ export default {
         .attr("y", (d, i) => -(i + 1) * 15)
         .attr("font-size", "12px")
       g.attr("transform", "translate(125, 125)");
-    },
+      var duration = config.delay * data.values.length + config.duration * 2;
+      return duration;
+    }
   },
     mounted() {
-    this.generateArc();
+    this.initChart();
   },
   watch: {
     clip: {
       deep: true,
       handler() {
         console.log(this.clip);
-        this.generateArc();
+        this.initChart();
       },
     },
   },
