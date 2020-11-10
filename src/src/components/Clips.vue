@@ -52,6 +52,7 @@ export default {
       frames: [],
       frameWidth: 500,
       frameHeight: 500,
+      interval: 15,
       recorder: null,
       recordedData: [],
       context: null
@@ -62,7 +63,7 @@ export default {
       this.isExporting = true;
       this.renderStatus = 'none';
       setTimeout(() => {
-        this.startRecord(1000);
+        this.startRecord();
         this.renderVideo();
       }, 0);
     },
@@ -81,7 +82,7 @@ export default {
       }
       this.renderStatus = 'finished';
     },
-    startRecord(interval) {
+    startRecord() {
       var canvas = document.createElement("canvas");
       canvas.width = this.frameWidth;
       canvas.height = this.frameHeight;
@@ -111,26 +112,21 @@ export default {
       };
 
       this.frames = [];
-      this.snapshot(interval);
+      this.snapshot();
     },
-    async snapshot(interval) {
+    async snapshot() {
       if (this.renderStatus === 'finished') return;
       else if (this.renderStatus === 'ongoing')
       {
-        let frame = await new Promise((resolve) => {
-          var svg = d3.select('.video').select("svg");
-          var serialized = new XMLSerializer().serializeToString(svg.node());
-          var blob = new Blob([serialized], { type: "image/svg+xml" });
-          var url = URL.createObjectURL(blob);
-          var img = new Image();
-          img.onload = function() {
-            resolve(img);
-          };
-          img.src = url;
-        });
-        this.frames.push(frame);
+        var svg = d3.select('.video').select("svg");
+        var serialized = new XMLSerializer().serializeToString(svg.node());
+        var blob = new Blob([serialized], { type: "image/svg+xml" });
+        var url = URL.createObjectURL(blob);
+        var img = new Image();
+        img.src = url;
+        this.frames.push(img);
       }
-      setTimeout(this.snapshot, interval);
+      setTimeout(this.snapshot, this.interval);
     }
   },
   watch: {
@@ -142,6 +138,7 @@ export default {
           requestAnimationFrame(drawFrame);
         } else {
           vm.recorder.stop();
+          vm.renderStatus = 'stop';
         }
       }
       if (newValue === 'finished') {
