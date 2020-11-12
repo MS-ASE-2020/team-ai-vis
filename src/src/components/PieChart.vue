@@ -29,11 +29,17 @@ export default {
     },
     renderClip(root,width,height,data,config){
       root.select('svg').remove();
+      var scale = width / 250;
       const svg = root
         //.select(`#${this.id}`)
         .append("svg")
         .attr("width", width)
-        .attr("height", height);
+        .attr("height", height)
+      svg
+        .append("rect")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("fill", "#fff");
       var arr = Array.from(data.values);
       const sortedGDP = arr.sort((a, b) => (a.value > b.value ? 1 : -1));
       const color = d3.scaleOrdinal(d3.schemeDark2);
@@ -47,8 +53,8 @@ export default {
 
       const arc = d3
         .arc()
-        .innerRadius((d, i) => (i + 1) * 15)
-        .outerRadius((d, i) => (i + 2) * 15)
+        .innerRadius((d, i) => (i + 1) * scale * 15)
+        .outerRadius((d, i) => (i + 2) * scale * 15)
         .startAngle(angleScale(0))
         .endAngle(d => angleScale(d.value));
 
@@ -81,9 +87,9 @@ export default {
         .text(d => `${d.country} -  ${d.value} Trillion`)
         .attr("x", -120)
         .attr("dy", -4)
-        .attr("y", (d, i) => -(i + 1) * 15)
+        .attr("y", (d, i) => -(i + 1) * scale * 15)
         .attr("font-size", "12px")
-      g.attr("transform", "translate(125, 125)");
+      g.attr("transform", "translate("+(width)/2+","+(height)/2+")");
       var duration = config.delay * data.values.length + config.duration * 2;
       return duration;
     }
