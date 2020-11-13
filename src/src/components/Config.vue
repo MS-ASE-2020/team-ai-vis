@@ -29,6 +29,7 @@
           <pie-chart-config></pie-chart-config>
         </div>
       </div>
+      <el-button id="warn" slot="trigger" type="primary" @click="$store.commit('deleteClip', $store.state.focusedClip)" size="small">Delete Clip</el-button>
     </div>
   </div>
 </template>
@@ -88,5 +89,9 @@ export default {
 }
 .upload {
   margin-bottom: 15px;
+}
+#warn{
+  color: white;
+  background-color: red;
 }
 </style>

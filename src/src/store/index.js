@@ -9,6 +9,20 @@ const store = new Vuex.Store({
     clips: []
   },
   mutations: {
+    deleteClip(state,clip)
+    {
+      var index=state.clips.indexOf(clip);
+      if(index>-1){
+        state.clips.splice(index,1);
+      }
+      if(index == 0){
+        state.focusedClip = state.clips[0];
+      }
+      else{
+        state.focusedClip = state.clips[index - 1];
+      }
+     
+    },
     addClip(state, type) {
       var clip = {
         type: type,

@@ -30,7 +30,7 @@ export default {
       root.select('svg').remove();
 
       let barWidth = width / data.values.length;
-
+      
       let svg = root
         .append("svg")
         .attr("width", width)
