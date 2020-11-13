@@ -12,9 +12,14 @@ const store = new Vuex.Store({
     deleteClip(state,clip)
     {
       var index=state.clips.indexOf(clip);
+      if(state.clips.length == 1){
+        state.focusedClip=null;
+        state.clips=[];
+      }
       if(index>-1){
         state.clips.splice(index,1);
       }
+
       if(index == 0){
         state.focusedClip = state.clips[0];
       }
@@ -22,6 +27,27 @@ const store = new Vuex.Store({
         state.focusedClip = state.clips[index - 1];
       }
      
+    },
+    left(state,clip){
+      var index = state.clips.indexOf(clip);
+      var temp = clip;
+      if(index >0){
+        state.clips[index] = state.clips[index-1];
+        state.clips[index-1] = temp;
+        state.focusedClip = state.clips[index];
+        state.focusedClip = state.clips[index-1];
+      }
+    },
+    right(state,clip){
+      var index = state.clips.indexOf(clip);
+      var temp = clip;
+      console.log(state.clips.length);
+      if(index < state.clips.length -1){
+        state.clips[index] = state.clips[index+1];
+        state.clips[index+1] = temp;
+        state.focusedClip = state.clips[index];
+        state.focusedClip = state.clips[index+1];
+      }
     },
     addClip(state, type) {
       var clip = {
