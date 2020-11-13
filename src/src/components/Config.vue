@@ -28,8 +28,11 @@
         <div v-else-if="$store.state.focusedClip.type === 'PieChart'">
           <pie-chart-config></pie-chart-config>
         </div>
-      </div>
       <el-button id="warn" slot="trigger" type="primary" @click="$store.commit('deleteClip', $store.state.focusedClip)" size="small">Delete Clip</el-button>
+      <el-button id="warn" slot="trigger" type="primary" @click="$store.commit('left', $store.state.focusedClip)" size="small">Left</el-button>
+      <el-button id="warn" slot="trigger" type="primary" @click="$store.commit('right', $store.state.focusedClip)" size="small">Right</el-button>
+      </div>
+      
     </div>
   </div>
 </template>
