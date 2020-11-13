@@ -13,6 +13,10 @@
           :auto-upload="false"
           :show-file-list="false">
           <el-button slot="trigger" type="primary" size="small">Upload data</el-button>
+          
+          <el-button id = 'dir' type="primary" @click="$store.commit('left', $store.state.focusedClip)" size="small">Left</el-button>
+          <el-button id = 'dir' type="primary" @click="$store.commit('right', $store.state.focusedClip)" size="small">Right</el-button>
+          <el-button id = "warn" type="primary" @click="$store.commit('deleteClip', $store.state.focusedClip)" size="small">Delete Clip</el-button>
         </el-upload>
       </div>
       <div class="config-detail">
@@ -28,9 +32,7 @@
         <div v-else-if="$store.state.focusedClip.type === 'PieChart'">
           <pie-chart-config></pie-chart-config>
         </div>
-      <el-button id="warn" slot="trigger" type="primary" @click="$store.commit('deleteClip', $store.state.focusedClip)" size="small">Delete Clip</el-button>
-      <el-button id="warn" slot="trigger" type="primary" @click="$store.commit('left', $store.state.focusedClip)" size="small">Left</el-button>
-      <el-button id="warn" slot="trigger" type="primary" @click="$store.commit('right', $store.state.focusedClip)" size="small">Right</el-button>
+      
       </div>
       
     </div>
@@ -42,7 +44,6 @@ import BarChartConfig from '@/components/BarChartConfig.vue';
 import GeoMapConfig from '@/components/GeoMapConfig.vue';
 import LineChartConfig from '@/components/LineChartConfig.vue';
 import PieChartConfig from '@/components/PieChartConfig.vue';
-
 export default {
   name: 'Config',
   components: {
@@ -96,5 +97,10 @@ export default {
 #warn{
   color: white;
   background-color: red;
+  margin-left: 15px;
+}
+#dir{
+  color: white;
+  margin-left: 15px;
 }
 </style>
