@@ -67,7 +67,7 @@ export default {
         .attr("d", arc)
         .attr("fill", (d, i) => color(i))
         .attr("stroke", "#FFF")
-        .attr("stroke-width", "1px")
+        .attr("stroke-width", (config.strokewidth) +"px")
         .transition() //开启过渡效果
         .delay(function (d, i) {
           //指定延迟的时间，表示一定时间后才开始转变，单位同样为毫秒
@@ -79,16 +79,16 @@ export default {
         //.ease(d3.easeBounceIn)
 
 
-
+      config.fontsize = config.fontsize *scale;
       g.selectAll("text")
         .data(data.values)
         .enter()
         .append("text")
         .text(d => `${d.country} -  ${d.value} Trillion`)
-        .attr("x", -120)
-        .attr("dy", -4)
+        .attr("dx", -120*scale)
+        .attr("dy", -4*scale)
         .attr("y", (d, i) => -(i + 1) * scale * 15)
-        .attr("font-size", "12px")
+        .attr("font-size", (config.fontsize)+"px")
       g.attr("transform", "translate("+(width)/2+","+(height)/2+")");
       var duration = config.delay * data.values.length + config.duration * 2;
       return duration;

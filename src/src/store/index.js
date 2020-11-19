@@ -93,6 +93,8 @@ const store = new Vuex.Store({
             duration: 1000,
             range: 180,
             opacity: 8,
+            fontsize:12,
+            strokewidth:1
           };
           break;
       }
