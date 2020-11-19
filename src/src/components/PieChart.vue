@@ -79,7 +79,7 @@ export default {
         //.ease(d3.easeBounceIn)
 
 
-      config.fontsize = config.fontsize *scale;
+      var temp = config.fontsize *scale;
       g.selectAll("text")
         .data(data.values)
         .enter()
@@ -88,7 +88,7 @@ export default {
         .attr("dx", -120*scale)
         .attr("dy", -4*scale)
         .attr("y", (d, i) => -(i + 1) * scale * 15)
-        .attr("font-size", (config.fontsize)+"px")
+        .attr("font-size", (temp)+"px")
       g.attr("transform", "translate("+(width)/2+","+(height)/2+")");
       var duration = config.delay * data.values.length + config.duration * 2;
       return duration;
