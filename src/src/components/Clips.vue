@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-    <el-dialog title="Exporting video..." :visible.sync="isExporting" width="80%" ref="dialog">
+    <el-dialog title="Exporting video..." :visible.sync="isExporting" :before-close="clearVideo()" width="80%" ref="dialog">
       <div class="video"></div>
     </el-dialog>
   </div>
@@ -127,6 +127,9 @@ export default {
         this.frames.push(img);
       }
       setTimeout(this.snapshot, this.interval);
+    },
+    clearVideo() {
+      d3.select('.video').selectAll('*').remove();
     }
   },
   watch: {
