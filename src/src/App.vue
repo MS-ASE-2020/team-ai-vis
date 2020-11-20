@@ -39,6 +39,9 @@ export default {
   margin: 0;
   padding: 0;
 }
+body {
+  overflow: hidden;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
