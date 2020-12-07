@@ -14,9 +14,9 @@
           :show-file-list="false">
           <el-button slot="trigger" type="primary" size="small">Upload data</el-button>
           
-          <el-button id="dir" type="primary" @click="$store.commit('left', $store.state.focusedClip)" size="small">Left</el-button>
-          <el-button id="dir" type="primary" @click="$store.commit('right', $store.state.focusedClip)" size="small">Right</el-button>
-          <el-button id="warn" type="primary" @click="$store.commit('deleteClip', $store.state.focusedClip)" size="small">Delete Clip</el-button>
+          <el-button id = 'dir' type="primary" @click="$store.commit('left', $store.state.focusedClip)" size="small">Left</el-button>
+          <el-button id = 'dir' type="primary" @click="$store.commit('right', $store.state.focusedClip)" size="small">Right</el-button>
+          <el-button id = "warn" type="primary" @click="$store.commit('deleteClip', $store.state.focusedClip)" size="small">Delete Clip</el-button>
         </el-upload>
       </div>
       <div class="config-detail">
@@ -88,21 +88,18 @@ export default {
 </script>
 
 <style scoped>
-.config {
-  overflow-y: auto;
-}
 .title {
   margin-bottom: 15px;
 }
 .upload {
   margin-bottom: 15px;
 }
-#warn {
+#warn{
   color: white;
   background-color: red;
   margin-left: 15px;
 }
-#dir {
+#dir{
   color: white;
   margin-left: 15px;
 }
