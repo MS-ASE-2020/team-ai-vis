@@ -1,12 +1,24 @@
 <template>
   <div class="geo-map-config">
-      GeoMapConfig
+    <el-form label-width="80px" :model="config">
+      <el-form-item label="delay">
+        <el-input v-model.number="config.delay"></el-input>
+      </el-form-item>
+      <el-form-item label="duration">
+        <el-input v-model.number="config.duration"></el-input>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'GeoMapConfig'
+  name: 'GeoMapConfig',
+  computed: {
+    config: function() {
+      return this.$store.state.focusedClip.config;
+    }
+  }
 }
 </script>
 

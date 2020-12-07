@@ -54,20 +54,28 @@ export default {
         .append("rect")
         .attr("class", "bar")
         .attr("x", (d, i) => barWidth * i)
-        .attr("height", "0")
-        .attr("width", "0") //矩形的宽，过渡动画前
+        
+        .attr("height", (d) => yScale(d))
+        .style("position","relative")
+        .style("bottom","0px")
+        .attr("width", barWidth - config.barPadding)
+      
         .transition() //开启过渡效果
         .delay(function (d, i) {
           //指定延迟的时间，表示一定时间后才开始转变，单位同样为毫秒
-          return config.delay * i;
+          return config.delay * (i+1)/(i+1);
         })
         .duration(config.duration) //执行动画的时间--毫秒
         //.ease(d3.easeBounceIn)
         .attr("y", (d) => yScale(d))
+        .style("position","relative")
+        .style("bottom","0px")
         .attr("height", (d) => height - yScale(d))
         .attr("width", barWidth - config.barPadding)
         .attr("fill", config.bar.beginColor) //初始颜色为红色
         .transition() //启动过渡
+        .style("position","relative")
+        .style("bottom","100px")
         .attr("fill", config.bar.endColor); //终止颜色为铁蓝色
 
       svg
@@ -75,10 +83,12 @@ export default {
         .data(data.values)
         .enter()
         .append("text")
+        .attr("x",(d,i)=>barWidth*i)
+        .attr("y",(d)=>0*d)
         .transition() //开启过渡效果
         .delay(function (d, i) {
           //指定延迟的时间，表示一定时间后才开始转变，单位同样为毫秒
-          return config.delay * i;
+          return config.delay *i;
         })
         .duration(config.duration) //执行动画的时间--毫秒
         .text((d) => d)
@@ -113,5 +123,10 @@ export default {
   width: 250px;
   border: 1px solid #d7dae2;
   border-radius: 4px;
+}
+.bar{
+  position: absolute;
+  top:0;
+  border: 10px solid #d7dae2;
 }
 </style>
