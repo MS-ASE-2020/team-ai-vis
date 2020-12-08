@@ -32,10 +32,10 @@ export default {
     .attr("width", width)
     .attr("height", height)
     
-    var scale = width / 250
+    
     let projection = d3.geoMercator()
-    .center([104*scale,38*scale])
-    .scale(250)
+    .center([104,38])
+    .scale(width)
     .translate([width / 2, height / 2])
     let path = d3.geoPath().projection(projection)
     var mapData = require("@/assets/china.json");
@@ -50,22 +50,20 @@ export default {
       var features = mapData.features;
       var size = [10,20,10,20,20,30];
       const g = svg.append("g");
-      g.attr('class', 'map')
-				.selectAll('.china')
+      
+			g.selectAll('path')
         .data(features)
-        //.enter()
-				.join('path')
-				.attr('class', 'china')
+        .enter()
+        .append("path")
+        .attr('d', path)
 				.attr("fill", function(d, i) {
 					return ss2[i % 3]
 				})
-				.attr('d', path);
-
+				
       g.selectAll('circle')
         .data(point)
-        //.enter()
-				.join('circle')
-				.attr("class", "point")
+        .enter()
+        .append("circle")
 				.attr("cx", function(d){
 					return coo(d)[0];
 				})
