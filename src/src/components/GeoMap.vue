@@ -27,12 +27,16 @@ export default {
       this.renderClip(root, width, height, data, config);
     },
     renderClip(root, width, height, data, config) {
+      
       root.select('svg').remove();
       let svg = root.append("svg")
     .attr("width", width)
     .attr("height", height)
-    
-    
+    svg
+        .append("rect")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("fill", "#fff");
     let projection = d3.geoMercator()
     .center([104,38])
     .scale(width)
@@ -48,7 +52,7 @@ export default {
       }
       var ss2 = d3.schemePastel2;
       var features = mapData.features;
-      var size = [10,20,10,20,20,30];
+      var size = [2,4,2,4,4,6];
       const g = svg.append("g");
       
 			g.selectAll('path')
@@ -80,7 +84,7 @@ export default {
           config.duration
         )
 	.attr("r", function(d,i){
-          return size[i]/2;
+          return size[i]*config.size;
         });
       //g.attr("transform", "translate("+(width)/2+","+(height)/2+")");
       var duration = config.delay * size.length + config.duration * 2;

@@ -7,6 +7,9 @@
       <el-form-item label="duration">
         <el-input v-model.number="config.duration"></el-input>
       </el-form-item>
+      <el-form-item label="size">
+        <el-input v-model.number="config.size"></el-input>
+      </el-form-item>
     </el-form>
   </div>
 </template>

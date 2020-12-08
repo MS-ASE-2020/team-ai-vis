@@ -77,7 +77,8 @@ const store = new Vuex.Store({
         case 'GeoMap':
           clip.config={
             delay:200,
-            duration:1000
+            duration:1000,
+            size: 1
           };
           break;
         case 'LineChart':
