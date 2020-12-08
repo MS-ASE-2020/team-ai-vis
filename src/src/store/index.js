@@ -78,7 +78,7 @@ const store = new Vuex.Store({
           clip.config={
             delay:200,
             duration:1000
-          }
+          };
           break;
         case 'LineChart':
           break;
