@@ -43,7 +43,7 @@ export default {
     .translate([width / 2, height / 2])
     let path = d3.geoPath().projection(projection)
     var mapData = require("@/assets/china.json");
-    var pointData = require("@/assets/point.json")
+    var pointData = data
     var point = pointData.features;
     var coo = function(d){
         var lngLat = d.geometry.coordinates;
@@ -52,7 +52,8 @@ export default {
       }
       var ss2 = d3.schemePastel2;
       var features = mapData.features;
-      var size = [2,4,2,4,4,6];
+      var size = pointData.size;
+      console.log(size);
       const g = svg.append("g");
       
 			g.selectAll('path')
