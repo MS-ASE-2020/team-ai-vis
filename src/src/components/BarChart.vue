@@ -29,8 +29,20 @@ export default {
     renderClip(root, width, height, data, config) {
       root.select('svg').remove();
 
-      let barWidth = width / data.values.length;
+      //let barWidth = width / data.values.length;
       
+      var scale = width / 250;
+      var temp = config.fontsize *scale;
+      var padding = {left:30, right:30, top:20, bottom:20};
+
+      var a = d3.rgb(0,0,100);	//红色
+      var b = d3.rgb(0,100,255);	//绿色
+      var compute = d3.interpolate(a,b);
+
+      var linearcolor = d3.scaleLinear()
+				.domain([0,150])
+				.range([0,1]);
+
       let svg = root
         .append("svg")
         .attr("width", width)
@@ -39,8 +51,24 @@ export default {
       let yScale = d3
         .scaleLinear()
         .domain([0, d3.max(data.values)])
-        .range([height - 20, 0]);
+        .range([height - padding.top - padding.bottom, 0]);
+      var min = yScale.domain()[0]
+
+      let xScale =d3
+        .scaleBand()
+        .domain(d3.range(data.values.length))
+        .range([0,width - padding.left - padding.right]);
       
+      //定义x轴
+      var xAxis = d3.axisBottom()
+        .scale(xScale)
+        
+
+      //定义y轴
+      var yAxis = d3.axisLeft()
+        .scale(yScale)
+  
+
       svg
         .append("rect")
         .attr("width", width)
@@ -53,12 +81,13 @@ export default {
         .enter()
         .append("rect")
         .attr("class", "bar")
-        .attr("x", (d, i) => barWidth * i)
-        
-        .attr("height", (d) => yScale(d))
+        .attr("transform","translate(" + padding.left + "," + padding.top + ")")
+        .attr("x", (d, i) => xScale(i) + config.barPadding/2)
+        .attr("height", 0)
+        .attr("y",yScale(min))
         .style("position","relative")
-        .style("bottom","0px")
-        .attr("width", barWidth - config.barPadding)
+        //.style("bottom","0px")
+        .attr("width", xScale.bandwidth() - config.barPadding)
       
         .transition() //开启过渡效果
         .delay(function (d, i) {
@@ -69,35 +98,56 @@ export default {
         //.ease(d3.easeBounceIn)
         .attr("y", (d) => yScale(d))
         .style("position","relative")
-        .style("bottom","0px")
-        .attr("height", (d) => height - yScale(d))
-        .attr("width", barWidth - config.barPadding)
-        .attr("fill", config.bar.beginColor) //初始颜色为红色
-        .transition() //启动过渡
+        //.style("bottom","0px")
+        .attr("height", (d) => height - padding.top - padding.bottom - yScale(d))
+        .attr("width", xScale.bandwidth() - config.barPadding)
+        //.attr("fill", config.bar.beginColor) //初始颜色为红色
+        //.transition() //启动过渡
         .style("position","relative")
         .style("bottom","100px")
-        .attr("fill", config.bar.endColor); //终止颜色为铁蓝色
+        //.attr("fill", config.bar.endColor) //终止颜色为铁蓝色
+        .attr("opacity",config.opacity / 10.0)
+        .style("fill",function(d){
+					return compute(linearcolor(d));
+				});
 
       svg
         .selectAll("text")
         .data(data.values)
         .enter()
         .append("text")
-        .attr("x",(d,i)=>barWidth*i)
-        .attr("y",(d)=>0*d)
+        .attr("font-size", (temp)+"px")
+        .attr("transform","translate(" + padding.left + "," + padding.top + ")")
+        .attr("x",(d,i)=>xScale(i) + config.barPadding/2)
+        .attr("y",yScale(min))
         .transition() //开启过渡效果
         .delay(function (d, i) {
           //指定延迟的时间，表示一定时间后才开始转变，单位同样为毫秒
-          return config.delay *i;
+          return config.delay * (i+1)/(i+1);
         })
         .duration(config.duration) //执行动画的时间--毫秒
         .text((d) => d)
+        .attr("font-size", (temp)+"px")
         .attr("y", (d) => yScale(d) + 20)
-        .attr("x", (d, i) => barWidth * i)
-        .attr("fill", config.text.beginColor) //初始颜色为红色
-        .transition() //启动过渡
+        .attr("x",(d,i)=>xScale(i) + config.barPadding/2)
+        //.attr("fill", config.text.beginColor) //初始颜色为红色
+        //.transition() //启动过渡
         .attr("fill", config.text.endColor); //终止颜色为铁蓝色
+      //添加x轴
+      svg
+        .append("g")
+        .attr("class","axis")
+        .attr("transform","translate(" + padding.left + "," + (height - padding.bottom) + ")")
+        .call(xAxis); 
+
+      //添加y轴
+      svg
+        .append("g")
+        .attr("class","axis")
+        .attr("transform","translate(" + padding.left + "," + padding.top + ")")
+        .call(yAxis);
       
+
       var duration = config.delay * data.values.length + config.duration * 2;
       return duration;
     }

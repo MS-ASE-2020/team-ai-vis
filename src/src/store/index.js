@@ -15,6 +15,7 @@ const store = new Vuex.Store({
       if(state.clips.length == 1){
         state.focusedClip=null;
         state.clips=[];
+        state.focusedClip.config={};
       }
       if(index>-1){
         state.clips.splice(index,1);
@@ -64,6 +65,8 @@ const store = new Vuex.Store({
             delay: 200,
             duration: 1000,
             barPadding: 0,
+            opacity: 8,
+            fontsize: 12,
             bar: {
               beginColor: 'red',
               endColor: 'steelblue'
