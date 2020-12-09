@@ -15,6 +15,7 @@ const store = new Vuex.Store({
       if(state.clips.length == 1){
         state.focusedClip=null;
         state.clips=[];
+        state.focusedClip.config = {};
       }
       if(index>-1){
         state.clips.splice(index,1);
@@ -22,6 +23,7 @@ const store = new Vuex.Store({
 
       if(index == 0){
         state.focusedClip = state.clips[0];
+        
       }
       else{
         state.focusedClip = state.clips[index - 1];
@@ -58,7 +60,7 @@ const store = new Vuex.Store({
       switch (type) {
         case 'BarChart':
           clip.data = {
-            values: [100, 80, 78, 98, 93, 82]
+            values: [100, 80, 78, 98, 93]
           };
           clip.config = {
             delay: 200,
@@ -136,11 +138,11 @@ const store = new Vuex.Store({
         case 'PieChart':
           clip.data = {
             values: [
-              { country: "USA", value: 20 },
-              { country: "China", value: 13.4 },
-              { country: "Germany", value: 4.0 },
-              { country: "Japan", value: 4.9 },
-              { country: "France", value: 2.8 }
+              { country: "Beijing", value: 20 },
+              { country: "Shanghai", value: 13.4 },
+              { country: "Tianjin", value: 4.0 },
+              { country: "Chengdu", value: 4.9 },
+              { country: "Chongqing", value: 2.8 }
             ]
           };
           clip.config = {

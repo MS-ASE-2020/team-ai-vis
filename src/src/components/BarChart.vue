@@ -30,7 +30,7 @@ export default {
       root.select('svg').remove();
 
       let barWidth = width / data.values.length;
-      
+      let scale=width/250;
       let svg = root
         .append("svg")
         .attr("width", width)
@@ -77,7 +77,7 @@ export default {
         .style("position","relative")
         .style("bottom","100px")
         .attr("fill", config.bar.endColor); //终止颜色为铁蓝色
-
+      var temp = scale * 20;
       svg
         .selectAll("text")
         .data(data.values)
@@ -92,9 +92,11 @@ export default {
         })
         .duration(config.duration) //执行动画的时间--毫秒
         .text((d) => d)
-        .attr("y", (d) => yScale(d) + 20)
+        .style("text-align","center")
+        .attr("y", (d) => yScale(d)+20*scale)
         .attr("x", (d, i) => barWidth * i)
         .attr("fill", config.text.beginColor) //初始颜色为红色
+        .attr("font-size", (temp)+"px")
         .transition() //启动过渡
         .attr("fill", config.text.endColor); //终止颜色为铁蓝色
       
@@ -129,4 +131,5 @@ export default {
   top:0;
   border: 10px solid #d7dae2;
 }
+
 </style>

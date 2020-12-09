@@ -83,7 +83,7 @@ export default {
         .data(data.values)
         .enter()
         .append("text")
-        .text(d => `${d.country} -  ${d.value} Trillion`)
+        .text(d => `${d.country} -  ${d.value} M`)
         .attr("dx", -120*scale)
         .attr("dy", -4*scale)
         .attr("y", (d, i) => -(i + 1) * scale * 15)
