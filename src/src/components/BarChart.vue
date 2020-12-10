@@ -31,16 +31,22 @@ export default {
 
       //let barWidth = width / data.values.length;
       
+      var ascendvalue=Array.from(data.values);
+      ascendvalue.sort(d3.ascending)
+
+      // var descendvalue=data.values
+      // descendvalue.sort(d3.descending)
+
       var scale = width / 250;
       var temp = config.fontsize *scale;
       var padding = {left:30, right:30, top:20, bottom:20};
 
-      var a = d3.rgb(0,0,100);	//红色
-      var b = d3.rgb(0,100,255);	//绿色
+      var b = d3.rgb(0,0,100);	//红色
+      var a = d3.rgb(0,100,255);	//绿色
       var compute = d3.interpolate(a,b);
 
       var linearcolor = d3.scaleLinear()
-				.domain([0,150])
+				.domain([0,100])
 				.range([0,1]);
 
       let svg = root
@@ -77,7 +83,8 @@ export default {
 
       svg
         .selectAll("rect.bar")
-        .data(data.values)
+        //.data(data.values)
+        .data(ascendvalue)
         .enter()
         .append("rect")
         .attr("class", "bar")
@@ -113,7 +120,8 @@ export default {
 
       svg
         .selectAll("text")
-        .data(data.values)
+        //.data(data.values)
+        .data(ascendvalue)
         .enter()
         .append("text")
         .attr("font-size", (temp)+"px")

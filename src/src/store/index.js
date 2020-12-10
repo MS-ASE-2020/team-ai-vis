@@ -64,7 +64,7 @@ const store = new Vuex.Store({
           clip.config = {
             delay: 200,
             duration: 1000,
-            barPadding: 0,
+            barPadding: 8,
             opacity: 8,
             fontsize: 12,
             bar: {
