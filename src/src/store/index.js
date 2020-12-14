@@ -83,6 +83,56 @@ const store = new Vuex.Store({
             duration:1000,
             size: 1
           };
+          clip.data={
+            "type": "FeatureCollection",
+    "size":[5,10,5,5,5,10],
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            105.84228515625,
+            30.41078179084589
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            114.19189453125,
+            22.329752304376473
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            110.3466796875,
+            25.443274612305746
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            112.3681640625,
+            34.56085936708384
+          ]
+        }
+      }
+    ]
+          }
           break;
         case 'LineChart':
           clip.data = {

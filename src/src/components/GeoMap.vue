@@ -1,3 +1,37 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@fym0503 
+MS-ASE-2020
+/
+team-ai-vis
+2
+3
+0
+Code
+Issues
+Pull requests
+1
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+team-ai-vis/src/src/components/GeoMap.vue
+@fym0503
+fym0503 upload map data
+Latest commit 2f9ffdd 5 days ago
+ History
+ 2 contributors
+@fym0503@IcePear-Jzx
+118 lines (112 sloc)  2.54 KB
+  
 <template>
   <div class="geo-map" :id="id">
   </div>
@@ -43,7 +77,7 @@ export default {
     .translate([width / 2, height / 2])
     let path = d3.geoPath().projection(projection)
     var mapData = require("@/assets/china.json");
-    var pointData = require("@/assets/point.json")
+    var pointData = data
     var point = pointData.features;
     var coo = function(d){
         var lngLat = d.geometry.coordinates;
@@ -52,7 +86,8 @@ export default {
       }
       var ss2 = d3.schemePastel2;
       var features = mapData.features;
-      var size = [2,4,2,4,4,6];
+      var size = pointData.size;
+      console.log(size);
       const g = svg.append("g");
       
 			g.selectAll('path')
@@ -113,5 +148,5 @@ export default {
   border: 1px solid #d7dae2;
   border-radius: 4px;
 }
-
 </style>
+
