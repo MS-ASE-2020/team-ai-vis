@@ -92,6 +92,8 @@ const store = new Vuex.Store({
           clip.config = {
             delay: 200,
             duration: 1000,
+            strokewidth: 2,
+            dotsize: 3,
           };
           break;
         case 'PieChart':

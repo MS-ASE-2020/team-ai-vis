@@ -7,6 +7,12 @@
       <el-form-item label="duration">
         <el-input v-model.number="config.duration"></el-input>
       </el-form-item>
+      <el-form-item label="strokewidth">
+        <el-input v-model.number="config.strokewidth"></el-input>
+      </el-form-item>
+      <el-form-item label="dotsize">
+        <el-input v-model.number="config.dotsize"></el-input>
+      </el-form-item>
     </el-form>
   </div>
 </template>
