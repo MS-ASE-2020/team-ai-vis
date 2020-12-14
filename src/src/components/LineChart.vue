@@ -31,6 +31,9 @@ export default {
  var max = d3.max(data.values, function(d) {
   return d[1];
 })
+var max1 = d3.max(data.values, function(d) {
+  return d[0];
+})
 
     var linearcolor = d3.scaleLinear()
 				.domain([0,max])
@@ -44,7 +47,7 @@ export default {
      
       var padding = { top: 50, right: 50, bottom: 50, left: 50 };     
       var xScale = d3.scaleLinear()
-              .domain([1, 12])
+              .domain([1,max1])
               .range([0, width - padding.left - padding.right]);
       var yScale = d3.scaleLinear()
               .domain([0, max])
