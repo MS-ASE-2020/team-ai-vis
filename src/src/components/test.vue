@@ -4,43 +4,44 @@
 </template>
 
 <script>
-import * as d3 from "d3";
+import * as d3 from 'd3'
 export default {
-  name: "LineChart",
-  data() {
+  name: 'LineChart',
+  data () {
     return {
+      dataset: [100, 80, 78, 98, 93, 82],
       svgWidth: 250,
       svgHeight: 250,
-    };
+      barPadding: 0
+    }
   },
   props: {
     clip: Object,
-    id: String,
+    id: String
   },
   methods: {
-    initChart() {
-      var root = d3.select(`#${this.id}`);
-      var width = this.svgWidth;
-      var height = this.svgHeight; 
-      var data = this.clip.data;
-      var config = this.clip.config;
-      this.renderClip(root, width, height, data, config);
-    },
-    renderClip(root, width, height, data, config) {
-      root.select('svg').remove();
+    initChart () {
+      var dataset = [[1, 224], [2, 528], [3, 756], [4, 632], [5, 582], [6, 704],
+              [7, 766], [8, 804], [9, 884], [10, 960], [11, 1095], [12, 1250]];
 
-      var max = d3.max(data.values, function(d) {
+
+var max = d3.max(dataset, function(d) {
   return d[1];
 })
-      var padding = { top: 50, right: 50, bottom: 50, left: 50 };     
-      var xScale = d3.scaleLinear()
+// 图表的宽度和高度
+var width = 250;
+var height = 250;
+// 预留给轴线的距离
+var padding = { top: 50, right: 50, bottom: 50, left: 50 };
+
+var xScale = d3.scaleLinear()
               .domain([1, 12])
               .range([0, width - padding.left - padding.right]);
-      var yScale = d3.scaleLinear()
+var yScale = d3.scaleLinear()
               .domain([0, max])
               .range([height - padding.top - padding.bottom, 0]);
 
-      var svg = d3.select(`#${this.id}`)
+var svg = d3.select(`#${this.id}`)
             .append('svg')
             .attr('width', width + 'px')
             .attr('height', height + 'px');
@@ -65,14 +66,14 @@ svg.append('g')
   .append('path')
   .attr('class', 'line-path')
   .attr('transform', 'translate(' + padding.left + ',' + padding.top + ')')
-  .attr('d', linePath(data.values))
+  .attr('d', linePath(dataset))
   .attr('fill', 'none')
   .attr('stroke-width', 3)
   .attr('stroke', 'green');
 
 svg.append('g')
   .selectAll('circle')
-  .data(data.values)
+  .data(dataset)
   .enter()
   .append('circle')
   .attr('r', 5)
@@ -87,36 +88,26 @@ svg.append('g')
 
       console.log(xAxis)
 
-      
-      var duration = config.delay * data.values.length + config.duration * 2;
-      return duration;
+
     }
   },
-  mounted() {
-    this.initChart();
-  },
-  watch: {
-    clip: {
-      deep: true,
-      handler() {
-        console.log(this.clip);
-        this.initChart();
-      },
-    },
-  },
-};
+  mounted () {
+    this.initChart()
+  }
+}
 </script>
  
 <style scoped>
-.line-chart {
+ .line-chart {
   height: 250px;
   width: 250px;
   border: 1px solid #d7dae2;
   border-radius: 4px;
 }
-.line{
-  position: absolute;
-  top:0;
-  border: 10px solid #d7dae2;
-}
 </style>
+
+
+
+
+
+

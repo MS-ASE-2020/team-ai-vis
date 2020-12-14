@@ -85,6 +85,14 @@ const store = new Vuex.Store({
           };
           break;
         case 'LineChart':
+          clip.data = {
+            values: [[1, 224], [2, 528], [3, 756], [4, 632], [5, 582], [6, 704],
+            [7, 766], [8, 804], [9, 884], [10, 960], [11, 1095], [12, 1250]]
+          };
+          clip.config = {
+            delay: 200,
+            duration: 1000,
+          };
           break;
         case 'PieChart':
           clip.data = {
