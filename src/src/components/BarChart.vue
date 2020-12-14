@@ -46,7 +46,7 @@ export default {
       var compute = d3.interpolate(a,b);
 
       var linearcolor = d3.scaleLinear()
-				.domain([0,100])
+				.domain([d3.min(data.values),d3.max(data.values)])
 				.range([0,1]);
 
       let svg = root
