@@ -50,10 +50,14 @@ export default {
               .domain([0, max])
               .range([height - padding.top - padding.bottom, 0]);
 
-      var svg = d3.select(`#${this.id}`)
-            .append('svg')
-            .attr('width', width + 'px')
-            .attr('height', height + 'px');
+      var svg = root.append('svg')
+            .attr('width', width)
+            .attr('height', height);
+      svg
+        .append("rect")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("fill", "#fff");
     var xAxis = d3.axisBottom()
               .scale(xScale);
     var yAxis = d3.axisLeft()
@@ -109,8 +113,8 @@ export default {
 					return compute(linearcolor(d[1]));
 				})
 
-     // var duration = config.delay * data.values.length + config.duration * 2;
-      //return duration;
+     var duration = config.delay * data.values.length + config.duration * 2;
+    return duration;
     }
   },
   mounted() {
