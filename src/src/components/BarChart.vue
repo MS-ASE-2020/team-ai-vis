@@ -99,7 +99,7 @@ export default {
         .transition() //开启过渡效果
         .delay(function (d, i) {
           //指定延迟的时间，表示一定时间后才开始转变，单位同样为毫秒
-          return config.delay * (i+1)/(i+1);
+          return config.delay * (i+1);
         })
         .duration(config.duration) //执行动画的时间--毫秒
         //.ease(d3.easeBounceIn)
@@ -131,7 +131,7 @@ export default {
         .transition() //开启过渡效果
         .delay(function (d, i) {
           //指定延迟的时间，表示一定时间后才开始转变，单位同样为毫秒
-          return config.delay * (i+1)/(i+1);
+          return config.delay * (i+1);
         })
         .duration(config.duration) //执行动画的时间--毫秒
         .text((d) => d)

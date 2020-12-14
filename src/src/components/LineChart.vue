@@ -85,7 +85,7 @@ var max1 = d3.max(data.values, function(d) {
       .transition() //开启过渡效果
         .delay(function (d, i) {
           //指定延迟的时间，表示一定时间后才开始转变，单位同样为毫秒
-          return config.delay * (i+1)/(i+1);
+          return config.delay * (i+1);
         })
         .duration(config.duration) //执行动画的时间--毫秒
       .attr('d', linePath(data.values))
@@ -98,14 +98,14 @@ var max1 = d3.max(data.values, function(d) {
       .data(data.values)
       .enter()
       .append('circle')
-      .attr('r', 1)
+      .attr('r', 0)
       .attr('transform', function(d){
         return 'translate(' + (xScale(d[0]) + padding.left) + ',' + (yScale(d[1]) + padding.top) + ')'
       })
       .transition() //开启过渡效果
         .delay(function (d, i) {
           //指定延迟的时间，表示一定时间后才开始转变，单位同样为毫秒
-          return config.delay * (i+1)/(i+1);
+          return config.delay * (i+1);
         })
         .duration(config.duration) //执行动画的时间--毫秒
       .attr('r', config.dotsize)
