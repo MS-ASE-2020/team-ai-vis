@@ -33,14 +33,14 @@ Latest commit 2f9ffdd 5 days ago
 118 lines (112 sloc)  2.54 KB
   
 <template>
-  <div class="geo-map-1" :id="id">
+  <div class="geo-map-b" :id="id">
   </div>
 </template>
 
 <script>
 import * as d3 from "d3";
 export default {
-  name: "GeoMap-1",
+  name: "GeoMapB",
   data() {
     return {
       svgWidth: 250,
@@ -154,7 +154,7 @@ export default {
 </script>
  
 <style scoped>
-.geo-map-1 {
+.geo-map-b {
   height: 250px;
   width: 250px;
   border: 1px solid #d7dae2;

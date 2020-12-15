@@ -57,49 +57,49 @@ const store = new Vuex.Store({
         config: {}
       };
       switch (type) {
-        case 'BarChar_1':
-          clip.data = {
+        case 'BarCharA':
+          clip.data={
             values: [100, 80, 78, 98, 93, 82],
             title: "aaa"
           };
-          clip.config = {
-            delay: 200,
-            duration: 1000,
-            barPadding: 8,
-            opacity: 8,
-            fontsize: 12,
+          clip.config={
+            delay:200,
+            duration:1000,
+            barPadding:8,
+            opacity:8,
+            fontsize:12,
             bar: {
-              beginColor: 'red',
-              endColor: 'steelblue'
+              beginColor:'red',
+              endColor:'steelblue'
             },
             text: {
-              beginColor: 'steelblue',
-              endColor: 'red'
+              beginColor:'steelblue',
+              endColor:'red'
             }
           };
           break;
-          case 'BarChart_2':
-            clip.data = {
-              values: [100, 80, 78, 98, 93, 82],
-              title: "aaa"
+          case 'BarChartB':
+            clip.data={
+              values:[100, 80, 78, 98, 93, 82],
+              title:"aaa"
             };
             clip.config = {
-              delay: 200,
-              duration: 1000,
-              barPadding: 8,
-              opacity: 8,
-              fontsize: 12,
+              delay:200,
+              duration:1000,
+              barPadding:8,
+              opacity:5,
+              fontsize:12,
               bar: {
-                beginColor: 'red',
-                endColor: 'steelblue'
+                beginColor:'red',
+                endColor:'steelblue'
               },
               text: {
-                beginColor: 'steelblue',
-                endColor: 'red'
+                beginColor:'steelblue',
+                endColor:'red'
               }
             };
             break;
-        case 'GeoMap_1':
+        case 'GeoMapA':
           clip.config={
             delay:200,
             duration:1000,
@@ -156,7 +156,7 @@ const store = new Vuex.Store({
     ],
     title: "aaa"}
           break;
-          case 'GeoMap_2':
+          case 'GeoMapB':
             clip.config={
               delay:200,
               duration:1000,
@@ -213,7 +213,7 @@ const store = new Vuex.Store({
       ],
       title: "aaa"}
             break;
-        case 'LineChart_1':
+        case 'LineChartA':
           clip.data = {
             values: [[1, 224], [2, 528], [3, 756], [4, 632], [5, 582], [6, 704],
             [7, 766], [8, 804], [9, 884], [10, 960], [11, 1095], [12, 1250]],
@@ -226,7 +226,7 @@ const store = new Vuex.Store({
             dotsize: 3,
           };
           break;
-          case 'LineChart_2':
+          case 'LineChartB':
             clip.data = {
               values: [[1, 224], [2, 528], [3, 756], [4, 632], [5, 582], [6, 704],
               [7, 766], [8, 804], [9, 884], [10, 960], [11, 1095], [12, 1250]],
@@ -239,7 +239,7 @@ const store = new Vuex.Store({
               dotsize: 3,
             };
             break;
-        case 'PieChart_1':
+        case 'PieChartA':
           clip.data = {
             values: [
               { country: "USA", value: 20 },
@@ -259,7 +259,7 @@ const store = new Vuex.Store({
             strokewidth:1
           };
           break;
-          case 'PieChart_2':
+          case 'PieChartB':
           clip.data = {
             values: [
               { country: "USA", value: 20 },
@@ -282,6 +282,7 @@ const store = new Vuex.Store({
       }
       state.focusedClip = clip;
       state.clips.push(clip);
+    console.log(clip.data.values)
     },
     updateFocusedClip(state, clip) {
       state.focusedClip = clip;

@@ -3,28 +3,28 @@
     Clips Library
     <el-col>
       <el-row>
-        <el-button type="primary" @click="$store.commit('addClip', 'BarChart_1')">BarChart-1</el-button>
+        <el-button type="primary" @click="$store.commit('addClip', 'BarChartA')">BarChart A</el-button>
       </el-row>
       <el-row>
-        <el-button type="primary" @click="$store.commit('addClip', 'BarChart_2')">BarChart-2</el-button>
+        <el-button type="primary" @click="$store.commit('addClip', 'BarChartB')">BarChart B</el-button>
       </el-row>
       <el-row>
-        <el-button type="primary" @click="$store.commit('addClip', 'GeoMap_1')">GeoMap-1</el-button>
+        <el-button type="primary" @click="$store.commit('addClip', 'GeoMapA')">GeoMap A</el-button>
       </el-row>
       <el-row>
-        <el-button type="primary" @click="$store.commit('addClip', 'GeoMap_2')">GeoMap-2</el-button>
+        <el-button type="primary" @click="$store.commit('addClip', 'GeoMapB')">GeoMap B</el-button>
       </el-row>
       <el-row>
-        <el-button type="primary" @click="$store.commit('addClip', 'LineChart_1')">LineChart-1</el-button>
+        <el-button type="primary" @click="$store.commit('addClip', 'LineChartA')">LineChart A</el-button>
       </el-row>
       <el-row>
-        <el-button type="primary" @click="$store.commit('addClip', 'LineChart_2')">LineChart-2</el-button>
+        <el-button type="primary" @click="$store.commit('addClip', 'LineChartB')">LineChart B</el-button>
       </el-row>
       <el-row>
-        <el-button type="primary" @click="$store.commit('addClip', 'PieChart_1')">PieChart-1</el-button>
+        <el-button type="primary" @click="$store.commit('addClip', 'PieChartA')">PieChart A</el-button>
       </el-row>
       <el-row>
-        <el-button type="primary" @click="$store.commit('addClip', 'PieChart_2')">PieChart-2</el-button>
+        <el-button type="primary" @click="$store.commit('addClip', 'PieChartB')">PieChart B</el-button>
       </el-row>
     </el-col>
   </div>

@@ -20,29 +20,29 @@
         </el-upload>
       </div>
       <div class="config-detail">
-        <div v-if="$store.state.focusedClip.type === 'BarChart_1'">
-          <bar-chart-config-1></bar-chart-config-1>
+        <div v-if="$store.state.focusedClip.type === 'BarChartA'">
+          <bar-chart-config-a></bar-chart-config-a>
         </div>
-        <div v-else-if="$store.state.focusedClip.type === 'GeoMap_1'">
-          <geo-map-config-1></geo-map-config-1>
+        <div v-else-if="$store.state.focusedClip.type === 'GeoMapA'">
+          <geo-map-config-a></geo-map-config-a>
         </div>
-        <div v-else-if="$store.state.focusedClip.type === 'LineChart_1'">
-          <line-chart-config-1></line-chart-config-1>
+        <div v-else-if="$store.state.focusedClip.type === 'LineChartA'">
+          <line-chart-config-a></line-chart-config-a>
         </div>
-        <div v-else-if="$store.state.focusedClip.type === 'PieChart_1'">
-          <pie-chart-config-1></pie-chart-config-1>
+        <div v-else-if="$store.state.focusedClip.type === 'PieChartA'">
+          <pie-chart-config-a></pie-chart-config-a>
         </div>
-        <div v-if="$store.state.focusedClip.type === 'BarChar_2'">
-          <bar-chart-config-2></bar-chart-config-2>
+        <div v-if="$store.state.focusedClip.type === 'BarCharB'">
+          <bar-chart-config-b></bar-chart-config-b>
         </div>
-        <div v-else-if="$store.state.focusedClip.type === 'GeoMap_2'">
-          <geo-map-config-2></geo-map-config-2>
+        <div v-else-if="$store.state.focusedClip.type === 'GeoMapB'">
+          <geo-map-config-b></geo-map-config-b>
         </div>
-        <div v-else-if="$store.state.focusedClip.type === 'LineChart_2'">
-          <line-chart-config-2></line-chart-config-2>
+        <div v-else-if="$store.state.focusedClip.type === 'LineChartB'">
+          <line-chart-config-b></line-chart-config-b>
         </div>
-        <div v-else-if="$store.state.focusedClip.type === 'PieChart_2'">
-          <pie-chart-config-2></pie-chart-config-2>
+        <div v-else-if="$store.state.focusedClip.type === 'PieChartB'">
+          <pie-chart-config-b></pie-chart-config-b>
         </div>
       </div>
       
@@ -51,25 +51,25 @@
 </template>
 
 <script>
-import BarChartConfig_1 from '@/components/BarChartConfig_1.vue';
-import GeoMapConfig_1 from '@/components/GeoMapConfig_1.vue';
-import LineChartConfig_1 from '@/components/LineChartConfig_1.vue';
-import PieChartConfig_1 from '@/components/PieChartConfig_1.vue';
-import BarChartConfig_2 from '@/components/BarChartConfig_2.vue';
-import GeoMapConfig_2 from '@/components/GeoMapConfig_2.vue';
-import LineChartConfig_2 from '@/components/LineChartConfig_2.vue';
-import PieChartConfig_2 from '@/components/PieChartConfig_2.vue';
+import BarChartConfigA from '@/components/BarChartConfigA.vue';
+import GeoMapConfigA from '@/components/GeoMapConfigA.vue';
+import LineChartConfigA from '@/components/LineChartConfigA.vue';
+import PieChartConfigA from '@/components/PieChartConfigA.vue';
+import BarChartConfigB from '@/components/BarChartConfigB.vue';
+import GeoMapConfigB from '@/components/GeoMapConfigB.vue';
+import LineChartConfigB from '@/components/LineChartConfigB.vue';
+import PieChartConfigB from '@/components/PieChartConfigB.vue';
 export default {
   name: 'Config',
   components: {
-    BarChartConfig_1,
-    GeoMapConfig_1,
-    LineChartConfig_1,
-    PieChartConfig_1,
-    BarChartConfig_2,
-    GeoMapConfig_2,
-    LineChartConfig_2,
-    PieChartConfig_2
+    BarChartConfigA,
+    GeoMapConfigA,
+    LineChartConfigA,
+    PieChartConfigA,
+    BarChartConfigB,
+    GeoMapConfigB,
+    LineChartConfigB,
+    PieChartConfigB
   },
   data() {
     return {

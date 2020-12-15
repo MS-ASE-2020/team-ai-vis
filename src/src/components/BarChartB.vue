@@ -1,12 +1,12 @@
 <template>
-  <div class="bar-chart-1" :id="id">
+  <div class="bar-chart-b" :id="id">
   </div>
 </template>
 
 <script>
 import * as d3 from "d3";
 export default {
-  name: "BarChart_1",
+  name: "BarChartB",
   data() {
     return {
       svgWidth: 250,
@@ -33,7 +33,7 @@ export default {
       
       var ascendvalue=Array.from(data.values);
       ascendvalue.sort(d3.ascending)
-
+      console.log(config)
       // var descendvalue=data.values
       // descendvalue.sort(d3.descending)
 
@@ -184,7 +184,7 @@ export default {
 </script>
  
 <style scoped>
-.bar-chart-1 {
+.bar-chart-b {
   height: 250px;
   width: 250px;
   border: 1px solid #d7dae2;

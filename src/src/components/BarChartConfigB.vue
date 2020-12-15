@@ -1,5 +1,5 @@
 <template>
-  <div class="geo-map-config-2">
+  <div class="bar-chart-config-b">
     <el-form label-width="80px" :model="config">
       <el-form-item label="delay">
         <el-input v-model.number="config.delay"></el-input>
@@ -7,8 +7,14 @@
       <el-form-item label="duration">
         <el-input v-model.number="config.duration"></el-input>
       </el-form-item>
-      <el-form-item label="size">
-        <el-input v-model.number="config.size"></el-input>
+      <el-form-item label="fontsize">
+        <el-input v-model.number="config.fontsize"></el-input>
+      </el-form-item>
+      <el-form-item label="opacity">
+        <el-input v-model.number="config.opacity"></el-input>
+      </el-form-item>
+      <el-form-item label="barPadding">
+        <el-input v-model.number="config.barPadding"></el-input>
       </el-form-item>
     </el-form>
   </div>
@@ -16,7 +22,7 @@
 
 <script>
 export default {
-  name: 'GeoMapConfig-2',
+  name: 'BarChartConfigB',
   computed: {
     config: function() {
       return this.$store.state.focusedClip.config;
