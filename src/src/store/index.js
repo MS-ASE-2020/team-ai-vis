@@ -57,7 +57,7 @@ const store = new Vuex.Store({
         config: {}
       };
       switch (type) {
-        case 'BarCharA':
+        case 'BarChartA':
           clip.data={
             values: [100, 80, 78, 98, 93, 82],
             title: "aaa"

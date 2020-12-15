@@ -28,41 +28,30 @@ export default {
     },
     renderClip(root, width, height, data, config) {
       root.select('svg').remove();
-      console.log("111");
       //let barWidth = width / data.values.length;
-      console.log("111");
-      console.log(data.values);
+      
       var ascendvalue=Array.from(data.values);
-      console.log("111");
       ascendvalue.sort(d3.ascending)
-
       // var descendvalue=data.values
       // descendvalue.sort(d3.descending)
-
       var scale = width / 250;
       var temp = config.fontsize *scale;
-       
       var padding = {left:40, right:40, top:40, bottom:40};
-
       var b = d3.rgb(0,0,100);	//红色
       var a = d3.rgb(0,100,255);	//绿色
       var compute = d3.interpolate(a,b);
-
       var linearcolor = d3.scaleLinear()
 				.domain([d3.min(data.values),d3.max(data.values)])
 				.range([0,1]);
-
       let svg = root
         .append("svg")
         .attr("width", width)
         .attr("height", height);
-       console.log("111");
       let yScale = d3
         .scaleLinear()
         .domain([0, d3.max(data.values)])
         .range([height - padding.top - padding.bottom, 0]);
       var min = yScale.domain()[0]
-
       let xScale =d3
         .scaleBand()
         .domain(d3.range(data.values.length))
@@ -72,18 +61,15 @@ export default {
       var xAxis = d3.axisBottom()
         .scale(xScale)
         
-
       //定义y轴
       var yAxis = d3.axisLeft()
         .scale(yScale)
   
-      console.log(data);
       svg
         .append("rect")
         .attr("width", width)
         .attr("height", height)
         .attr("fill", "#fff");
-
       svg
         .selectAll("rect.bar")
         //.data(data.values)
@@ -120,7 +106,6 @@ export default {
         .style("fill",function(d){
 					return compute(linearcolor(d));
 				});
-
       svg
         .selectAll("text")
         //.data(data.values)
@@ -150,7 +135,6 @@ export default {
         .attr("class","axis")
         .attr("transform","translate(" + padding.left + "," + (height - padding.bottom) + ")")
         .call(xAxis); 
-
       //添加y轴
       svg
         .append("g")
@@ -166,7 +150,6 @@ export default {
       .attr('x', width/2)
       .attr('y', 20)
         .text(data.title)
-
       var duration = config.delay * data.values.length + config.duration * 2;
       return duration;
     }
