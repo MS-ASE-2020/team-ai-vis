@@ -22,7 +22,7 @@
             :class="{ active: $store.state.focusedClip === clip }">
           <pie-chart-a :clip="clip" :id="clip.type + index" :ref="clip.type + index"></pie-chart-a>
         </div>
-        <div v-if="clip.type === 'BarChartB'" @click="$store.commit('updateFocusedClip', clip)" 
+        <div v-else-if="clip.type === 'BarChartB'" @click="$store.commit('updateFocusedClip', clip)" 
             :class="{ active: $store.state.focusedClip === clip }">
           <bar-chart-b :clip="clip" :id="clip.type + index" :ref="clip.type + index"></bar-chart-b>
         </div>

@@ -32,7 +32,7 @@
         <div v-else-if="$store.state.focusedClip.type === 'PieChartA'">
           <pie-chart-config-a></pie-chart-config-a>
         </div>
-        <div v-if="$store.state.focusedClip.type === 'BarCharB'">
+        <div v-else-if="$store.state.focusedClip.type === 'BarChartB'">
           <bar-chart-config-b></bar-chart-config-b>
         </div>
         <div v-else-if="$store.state.focusedClip.type === 'GeoMapB'">
