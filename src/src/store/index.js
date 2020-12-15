@@ -57,7 +57,7 @@ const store = new Vuex.Store({
         config: {}
       };
       switch (type) {
-        case 'BarChart':
+        case 'BarChar_1':
           clip.data = {
             values: [100, 80, 78, 98, 93, 82],
             title: "aaa"
@@ -78,7 +78,28 @@ const store = new Vuex.Store({
             }
           };
           break;
-        case 'GeoMap':
+          case 'BarChart_2':
+            clip.data = {
+              values: [100, 80, 78, 98, 93, 82],
+              title: "aaa"
+            };
+            clip.config = {
+              delay: 200,
+              duration: 1000,
+              barPadding: 8,
+              opacity: 8,
+              fontsize: 12,
+              bar: {
+                beginColor: 'red',
+                endColor: 'steelblue'
+              },
+              text: {
+                beginColor: 'steelblue',
+                endColor: 'red'
+              }
+            };
+            break;
+        case 'GeoMap_1':
           clip.config={
             delay:200,
             duration:1000,
@@ -135,7 +156,64 @@ const store = new Vuex.Store({
     ],
     title: "aaa"}
           break;
-        case 'LineChart':
+          case 'GeoMap_2':
+            clip.config={
+              delay:200,
+              duration:1000,
+              size: 1
+            };
+            clip.data={
+              "type": "FeatureCollection",
+      "size":[5,10,5,5,5,10],
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {},
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              105.84228515625,
+              30.41078179084589
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {},
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              114.19189453125,
+              22.329752304376473
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {},
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              110.3466796875,
+              25.443274612305746
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {},
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              112.3681640625,
+              34.56085936708384
+            ]
+          }
+        }
+      ],
+      title: "aaa"}
+            break;
+        case 'LineChart_1':
           clip.data = {
             values: [[1, 224], [2, 528], [3, 756], [4, 632], [5, 582], [6, 704],
             [7, 766], [8, 804], [9, 884], [10, 960], [11, 1095], [12, 1250]],
@@ -148,7 +226,40 @@ const store = new Vuex.Store({
             dotsize: 3,
           };
           break;
-        case 'PieChart':
+          case 'LineChart_2':
+            clip.data = {
+              values: [[1, 224], [2, 528], [3, 756], [4, 632], [5, 582], [6, 704],
+              [7, 766], [8, 804], [9, 884], [10, 960], [11, 1095], [12, 1250]],
+              title:"aaa"
+            };
+            clip.config = {
+              delay: 200,
+              duration: 1000,
+              strokewidth: 2,
+              dotsize: 3,
+            };
+            break;
+        case 'PieChart_1':
+          clip.data = {
+            values: [
+              { country: "USA", value: 20 },
+              { country: "China", value: 13.4 },
+              { country: "Germany", value: 4.0 },
+              { country: "Japan", value: 4.9 },
+              { country: "France", value: 2.8 }
+            ],
+            title: "aaa"
+          };
+          clip.config = {
+            delay: 200,
+            duration: 1000,
+            range: 180,
+            opacity: 8,
+            fontsize:12,
+            strokewidth:1
+          };
+          break;
+          case 'PieChart_2':
           clip.data = {
             values: [
               { country: "USA", value: 20 },

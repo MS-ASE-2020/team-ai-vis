@@ -1,23 +1,20 @@
 <template>
-  <div class="pie-chart-config">
-      <el-form label-width="80px" :model="config">
+  <div class="bar-chart-config-1">
+    <el-form label-width="80px" :model="config">
       <el-form-item label="delay">
         <el-input v-model.number="config.delay"></el-input>
       </el-form-item>
       <el-form-item label="duration">
         <el-input v-model.number="config.duration"></el-input>
       </el-form-item>
-      <el-form-item label="range">
-        <el-input v-model.number="config.range"></el-input>
+      <el-form-item label="fontsize">
+        <el-input v-model.number="config.fontsize"></el-input>
       </el-form-item>
       <el-form-item label="opacity">
         <el-input v-model.number="config.opacity"></el-input>
       </el-form-item>
-      <el-form-item label="fontsize">
-        <el-input v-model.number="config.fontsize"></el-input>
-      </el-form-item>
-       <el-form-item label="stroke">
-        <el-input v-model.number="config.strokewidth"></el-input>
+      <el-form-item label="barPadding">
+        <el-input v-model.number="config.barPadding"></el-input>
       </el-form-item>
     </el-form>
   </div>
@@ -25,7 +22,7 @@
 
 <script>
 export default {
-  name: 'PieChartConfig',
+  name: 'BarChartConfig_1',
   computed: {
     config: function() {
       return this.$store.state.focusedClip.config;

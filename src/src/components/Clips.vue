@@ -6,21 +6,37 @@
     </div>
     <div class="clips-list">
       <div v-for="(clip, index) in $store.state.clips" :key="index">
-        <div v-if="clip.type === 'BarChart'" @click="$store.commit('updateFocusedClip', clip)" 
+        <div v-if="clip.type === 'BarChart_1'" @click="$store.commit('updateFocusedClip', clip)" 
             :class="{ active: $store.state.focusedClip === clip }">
-          <bar-chart :clip="clip" :id="clip.type + index" :ref="clip.type + index"></bar-chart>
+          <bar-chart-1 :clip="clip" :id="clip.type + index" :ref="clip.type + index"></bar-chart-1>
         </div>
-        <div v-else-if="clip.type === 'GeoMap'" @click="$store.commit('updateFocusedClip', clip)" 
+        <div v-else-if="clip.type === 'GeoMap_1'" @click="$store.commit('updateFocusedClip', clip)" 
             :class="{ active: $store.state.focusedClip === clip }">
-          <geo-map :clip="clip" :id="clip.type + index" :ref="clip.type + index"></geo-map>
+          <geo-map-1 :clip="clip" :id="clip.type + index" :ref="clip.type + index"></geo-map-1>
         </div>
-        <div v-else-if="clip.type === 'LineChart'" @click="$store.commit('updateFocusedClip', clip)" 
+        <div v-else-if="clip.type === 'LineChart_1'" @click="$store.commit('updateFocusedClip', clip)" 
             :class="{ active: $store.state.focusedClip === clip }">
-          <line-chart :clip="clip" :id="clip.type + index" :ref="clip.type + index"></line-chart>
+          <line-chart-1 :clip="clip" :id="clip.type + index" :ref="clip.type + index"></line-chart-1>
         </div>
-        <div v-else-if="clip.type === 'PieChart'" @click="$store.commit('updateFocusedClip', clip)" 
+        <div v-else-if="clip.type === 'PieChart_1'" @click="$store.commit('updateFocusedClip', clip)" 
             :class="{ active: $store.state.focusedClip === clip }">
-          <pie-chart :clip="clip" :id="clip.type + index" :ref="clip.type + index"></pie-chart>
+          <pie-chart-1 :clip="clip" :id="clip.type + index" :ref="clip.type + index"></pie-chart-1>
+        </div>
+        <div v-if="clip.type === 'BarChart_2'" @click="$store.commit('updateFocusedClip', clip)" 
+            :class="{ active: $store.state.focusedClip === clip }">
+          <bar-chart-2 :clip="clip" :id="clip.type + index" :ref="clip.type + index"></bar-chart-2>
+        </div>
+        <div v-else-if="clip.type === 'GeoMap_2'" @click="$store.commit('updateFocusedClip', clip)" 
+            :class="{ active: $store.state.focusedClip === clip }">
+          <geo-map-2 :clip="clip" :id="clip.type + index" :ref="clip.type + index"></geo-map-2>
+        </div>
+        <div v-else-if="clip.type === 'LineChart_2'" @click="$store.commit('updateFocusedClip', clip)" 
+            :class="{ active: $store.state.focusedClip === clip }">
+          <line-chart-2 :clip="clip" :id="clip.type + index" :ref="clip.type + index"></line-chart-2>
+        </div>
+        <div v-else-if="clip.type === 'PieChart_2'" @click="$store.commit('updateFocusedClip', clip)" 
+            :class="{ active: $store.state.focusedClip === clip }">
+          <pie-chart-2 :clip="clip" :id="clip.type + index" :ref="clip.type + index"></pie-chart-2>
         </div>
       </div>
     </div>
@@ -31,19 +47,28 @@
 </template>
 
 <script>
-import BarChart from '@/components/BarChart.vue';
-import GeoMap from '@/components/GeoMap.vue';
-import LineChart from '@/components/LineChart.vue';
-import PieChart from '@/components/PieChart.vue';
+import BarChart_1 from '@/components/BarChart_1.vue';
+import GeoMap_1 from '@/components/GeoMap_1.vue';
+import LineChart_1 from '@/components/LineChart_1.vue';
+import PieChart_1 from '@/components/PieChart_1.vue';
+import BarChart_2 from '@/components/BarChart_2.vue';
+import GeoMap_2 from '@/components/GeoMap_2.vue';
+import LineChart_2 from '@/components/LineChart_2.vue';
+import PieChart_2 from '@/components/PieChart_2.vue';
 import * as d3 from 'd3';
 
 export default {
   name: 'Clips',
   components: {
-    BarChart,
-    GeoMap,
-    LineChart,
-    PieChart
+    BarChart_1,
+    GeoMap_1,
+    LineChart_1,
+    PieChart_1,
+    BarChart_2,
+    GeoMap_2,
+    LineChart_2,
+    PieChart_2
+
   },
   data() {
     return {

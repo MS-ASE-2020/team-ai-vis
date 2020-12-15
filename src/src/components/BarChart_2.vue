@@ -1,12 +1,12 @@
 <template>
-  <div class="bar-chart" :id="id">
+  <div class="bar-chart-2" :id="id">
   </div>
 </template>
 
 <script>
 import * as d3 from "d3";
 export default {
-  name: "BarChart",
+  name: "BarChart_2",
   data() {
     return {
       svgWidth: 250,
@@ -184,7 +184,7 @@ export default {
 </script>
  
 <style scoped>
-.bar-chart {
+.bar-chart-2 {
   height: 250px;
   width: 250px;
   border: 1px solid #d7dae2;
