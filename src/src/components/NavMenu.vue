@@ -1,7 +1,7 @@
 <template>
   <el-row class="nav-menu" type="flex">
     <el-col>
-      <h2>DataClips</h2>
+      <h2>AI+VIS@ASE2020</h2>
     </el-col>
   </el-row>
 </template>

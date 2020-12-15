@@ -39,7 +39,7 @@ export default {
 
       var scale = width / 250;
       var temp = config.fontsize *scale;
-      var padding = {left:30, right:30, top:20, bottom:20};
+      var padding = {left:40, right:40, top:40, bottom:40};
 
       var b = d3.rgb(0,0,100);	//红色
       var a = d3.rgb(0,100,255);	//绿色
@@ -154,7 +154,15 @@ export default {
         .attr("class","axis")
         .attr("transform","translate(" + padding.left + "," + padding.top + ")")
         .call(yAxis);
-      
+      svg.append('g')
+      .append("text")
+      .attr('fill', '#000')
+      .attr('font-size', 12 * scale +'px')
+      .attr('font-weight', '700')
+      .attr('text-anchor', 'middle')
+      .attr('x', width/2)
+      .attr('y', 20)
+        .text(data.title)
 
       var duration = config.delay * data.values.length + config.duration * 2;
       return duration;

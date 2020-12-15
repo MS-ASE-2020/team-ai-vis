@@ -92,7 +92,16 @@ var max1 = d3.max(data.values, function(d) {
       .attr('fill', 'none')
       .attr('stroke-width', config.strokewidth)
       .attr('stroke', 'black');
-
+    var scale = width / 250;
+    svg.append('g')
+      .append("text")
+      .attr('fill', '#000')
+      .attr('font-size', 12 * scale +'px')
+      .attr('font-weight', '700')
+      .attr('text-anchor', 'middle')
+      .attr('x', width/2)
+      .attr('y', 20)
+        .text(data.title)
     svg.append('g')
       .selectAll('circle')
       .data(data.values)

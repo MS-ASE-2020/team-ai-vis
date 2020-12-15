@@ -59,7 +59,8 @@ const store = new Vuex.Store({
       switch (type) {
         case 'BarChart':
           clip.data = {
-            values: [100, 80, 78, 98, 93, 82]
+            values: [100, 80, 78, 98, 93, 82],
+            title: "aaa"
           };
           clip.config = {
             delay: 200,
@@ -131,13 +132,14 @@ const store = new Vuex.Store({
           ]
         }
       }
-    ]
-          }
+    ],
+    title: "aaa"}
           break;
         case 'LineChart':
           clip.data = {
             values: [[1, 224], [2, 528], [3, 756], [4, 632], [5, 582], [6, 704],
-            [7, 766], [8, 804], [9, 884], [10, 960], [11, 1095], [12, 1250]]
+            [7, 766], [8, 804], [9, 884], [10, 960], [11, 1095], [12, 1250]],
+            title:"aaa"
           };
           clip.config = {
             delay: 200,
@@ -154,7 +156,8 @@ const store = new Vuex.Store({
               { country: "Germany", value: 4.0 },
               { country: "Japan", value: 4.9 },
               { country: "France", value: 2.8 }
-            ]
+            ],
+            title: "aaa"
           };
           clip.config = {
             delay: 200,

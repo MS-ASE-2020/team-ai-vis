@@ -88,6 +88,15 @@ export default {
         .attr("dy", -4*scale)
         .attr("y", (d, i) => -(i + 1) * scale * 15)
         .attr("font-size", (temp)+"px")
+      svg.append('g')
+      .append("text")
+      .attr('fill', '#000')
+      .attr('font-size', 12 * scale +'px')
+      .attr('font-weight', '700')
+      .attr('text-anchor', 'middle')
+      .attr('x', width/2)
+      .attr('y', 20)
+        .text(data.title)
       g.attr("transform", "translate("+(width)/2+","+(height)/2+")");
       var duration = config.delay * data.values.length + config.duration * 2;
       return duration;
