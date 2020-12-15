@@ -121,6 +121,18 @@ export default {
 	.attr("r", function(d,i){
           return size[i]*config.size;
         });
+      var scale = width / 250;
+      //var temp = config.fontsize *scale;
+      svg.append('g')
+      .append("text")
+      .attr('fill', '#000')
+      .attr('font-size', 12 * scale +'px')
+      .attr('font-weight', '700')
+      .attr('text-anchor', 'middle')
+      .attr('x', width/2)
+      .attr('y', 20)
+        .text(data.title)
+      //g.attr("transform", "translate("+(width)/2+","+(height)/2+")");
       //g.attr("transform", "translate("+(width)/2+","+(height)/2+")");
       var duration = config.delay * size.length + config.duration * 2;
       return duration;
