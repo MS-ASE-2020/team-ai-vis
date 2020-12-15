@@ -1,5 +1,5 @@
 <template>
-  <div class="line-chart-config-2">
+  <div class="line-chart-config-b">
     <el-form label-width="80px" :model="config">
       <el-form-item label="delay">
         <el-input v-model.number="config.delay"></el-input>
@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: 'LineChartConfig_2',
+  name: 'LineChartConfigB',
   computed: {
     config: function() {
       return this.$store.state.focusedClip.config;

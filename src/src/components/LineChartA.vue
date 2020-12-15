@@ -1,12 +1,12 @@
 <template>
-  <div class="line-chart-2" :id="id">
+  <div class="line-chart-a" :id="id">
   </div>
 </template>
 
 <script>
 import * as d3 from "d3";
 export default {
-  name: "LineChart_2",
+  name: "LineChartA",
   data() {
     return {
       svgWidth: 250,
@@ -145,7 +145,7 @@ var max1 = d3.max(data.values, function(d) {
 </script>
  
 <style scoped>
-.line-chart-2 {
+.line-chart-a {
   height: 250px;
   width: 250px;
   border: 1px solid #d7dae2;

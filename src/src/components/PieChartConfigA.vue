@@ -1,5 +1,5 @@
 <template>
-  <div class="pie-chart-config-1">
+  <div class="pie-chart-config-a">
       <el-form label-width="80px" :model="config">
       <el-form-item label="delay">
         <el-input v-model.number="config.delay"></el-input>
@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: 'PieChartConfig_1',
+  name: 'PieChartConfigA',
   computed: {
     config: function() {
       return this.$store.state.focusedClip.config;

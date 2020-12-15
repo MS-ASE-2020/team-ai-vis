@@ -1,12 +1,12 @@
 <template>
-  <div class="bar-chart-2" :id="id">
+  <div class="bar-chart-a" :id="id">
   </div>
 </template>
 
 <script>
 import * as d3 from "d3";
 export default {
-  name: "BarChart_2",
+  name: "BarChartA",
   data() {
     return {
       svgWidth: 250,
@@ -28,10 +28,12 @@ export default {
     },
     renderClip(root, width, height, data, config) {
       root.select('svg').remove();
-
+      console.log("111");
       //let barWidth = width / data.values.length;
-      
+      console.log("111");
+      console.log(data.values);
       var ascendvalue=Array.from(data.values);
+      console.log("111");
       ascendvalue.sort(d3.ascending)
 
       // var descendvalue=data.values
@@ -39,6 +41,7 @@ export default {
 
       var scale = width / 250;
       var temp = config.fontsize *scale;
+       
       var padding = {left:40, right:40, top:40, bottom:40};
 
       var b = d3.rgb(0,0,100);	//红色
@@ -53,7 +56,7 @@ export default {
         .append("svg")
         .attr("width", width)
         .attr("height", height);
-
+       console.log("111");
       let yScale = d3
         .scaleLinear()
         .domain([0, d3.max(data.values)])
@@ -74,7 +77,7 @@ export default {
       var yAxis = d3.axisLeft()
         .scale(yScale)
   
-
+      console.log(data);
       svg
         .append("rect")
         .attr("width", width)
@@ -184,7 +187,7 @@ export default {
 </script>
  
 <style scoped>
-.bar-chart-2 {
+.bar-chart-a {
   height: 250px;
   width: 250px;
   border: 1px solid #d7dae2;
