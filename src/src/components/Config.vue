@@ -20,19 +20,30 @@
         </el-upload>
       </div>
       <div class="config-detail">
-        <div v-if="$store.state.focusedClip.type === 'BarChart'">
-          <bar-chart-config></bar-chart-config>
+        <div v-if="$store.state.focusedClip.type === 'BarChart_1'">
+          <bar-chart-config-1></bar-chart-config-1>
         </div>
-        <div v-else-if="$store.state.focusedClip.type === 'GeoMap'">
-          <geo-map-config></geo-map-config>
+        <div v-else-if="$store.state.focusedClip.type === 'GeoMap_1'">
+          <geo-map-config-1></geo-map-config-1>
         </div>
-        <div v-else-if="$store.state.focusedClip.type === 'LineChart'">
-          <line-chart-config></line-chart-config>
+        <div v-else-if="$store.state.focusedClip.type === 'LineChart_1'">
+          <line-chart-config-1></line-chart-config-1>
         </div>
-        <div v-else-if="$store.state.focusedClip.type === 'PieChart'">
-          <pie-chart-config></pie-chart-config>
+        <div v-else-if="$store.state.focusedClip.type === 'PieChart_1'">
+          <pie-chart-config-1></pie-chart-config-1>
         </div>
-      
+        <div v-if="$store.state.focusedClip.type === 'BarChar_2'">
+          <bar-chart-config-2></bar-chart-config-2>
+        </div>
+        <div v-else-if="$store.state.focusedClip.type === 'GeoMap_2'">
+          <geo-map-config-2></geo-map-config-2>
+        </div>
+        <div v-else-if="$store.state.focusedClip.type === 'LineChart_2'">
+          <line-chart-config-2></line-chart-config-2>
+        </div>
+        <div v-else-if="$store.state.focusedClip.type === 'PieChart_2'">
+          <pie-chart-config-2></pie-chart-config-2>
+        </div>
       </div>
       
     </div>
@@ -40,17 +51,25 @@
 </template>
 
 <script>
-import BarChartConfig from '@/components/BarChartConfig.vue';
-import GeoMapConfig from '@/components/GeoMapConfig.vue';
-import LineChartConfig from '@/components/LineChartConfig.vue';
-import PieChartConfig from '@/components/PieChartConfig.vue';
+import BarChartConfig_1 from '@/components/BarChartConfig_1.vue';
+import GeoMapConfig_1 from '@/components/GeoMapConfig_1.vue';
+import LineChartConfig_1 from '@/components/LineChartConfig_1.vue';
+import PieChartConfig_1 from '@/components/PieChartConfig_1.vue';
+import BarChartConfig_2 from '@/components/BarChartConfig_2.vue';
+import GeoMapConfig_2 from '@/components/GeoMapConfig_2.vue';
+import LineChartConfig_2 from '@/components/LineChartConfig_2.vue';
+import PieChartConfig_2 from '@/components/PieChartConfig_2.vue';
 export default {
   name: 'Config',
   components: {
-    BarChartConfig,
-    GeoMapConfig,
-    LineChartConfig,
-    PieChartConfig
+    BarChartConfig_1,
+    GeoMapConfig_1,
+    LineChartConfig_1,
+    PieChartConfig_1,
+    BarChartConfig_2,
+    GeoMapConfig_2,
+    LineChartConfig_2,
+    PieChartConfig_2
   },
   data() {
     return {

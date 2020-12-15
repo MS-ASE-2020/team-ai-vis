@@ -1,5 +1,5 @@
 <template>
-  <div class="bar-chart-config">
+  <div class="line-chart-config-1">
     <el-form label-width="80px" :model="config">
       <el-form-item label="delay">
         <el-input v-model.number="config.delay"></el-input>
@@ -7,14 +7,11 @@
       <el-form-item label="duration">
         <el-input v-model.number="config.duration"></el-input>
       </el-form-item>
-      <el-form-item label="fontsize">
-        <el-input v-model.number="config.fontsize"></el-input>
+      <el-form-item label="strokewidth">
+        <el-input v-model.number="config.strokewidth"></el-input>
       </el-form-item>
-      <el-form-item label="opacity">
-        <el-input v-model.number="config.opacity"></el-input>
-      </el-form-item>
-      <el-form-item label="barPadding">
-        <el-input v-model.number="config.barPadding"></el-input>
+      <el-form-item label="dotsize">
+        <el-input v-model.number="config.dotsize"></el-input>
       </el-form-item>
     </el-form>
   </div>
@@ -22,7 +19,7 @@
 
 <script>
 export default {
-  name: 'BarChartConfig',
+  name: 'LineChartConfig_1',
   computed: {
     config: function() {
       return this.$store.state.focusedClip.config;

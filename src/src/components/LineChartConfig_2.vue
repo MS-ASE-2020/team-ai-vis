@@ -1,5 +1,5 @@
 <template>
-  <div class="geo-map-config">
+  <div class="line-chart-config-2">
     <el-form label-width="80px" :model="config">
       <el-form-item label="delay">
         <el-input v-model.number="config.delay"></el-input>
@@ -7,8 +7,11 @@
       <el-form-item label="duration">
         <el-input v-model.number="config.duration"></el-input>
       </el-form-item>
-      <el-form-item label="size">
-        <el-input v-model.number="config.size"></el-input>
+      <el-form-item label="strokewidth">
+        <el-input v-model.number="config.strokewidth"></el-input>
+      </el-form-item>
+      <el-form-item label="dotsize">
+        <el-input v-model.number="config.dotsize"></el-input>
       </el-form-item>
     </el-form>
   </div>
@@ -16,7 +19,7 @@
 
 <script>
 export default {
-  name: 'GeoMapConfig',
+  name: 'LineChartConfig_2',
   computed: {
     config: function() {
       return this.$store.state.focusedClip.config;
