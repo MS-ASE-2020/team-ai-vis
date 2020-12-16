@@ -56,11 +56,16 @@ export default {
         .scaleBand()
         .domain(d3.range(data.values.length))
         .range([0,width - padding.left - padding.right]);
-      
+      var labels=data.names;
+      var xScaleLabels = d3
+      .scaleBand()
+      .domain(labels)
+      .rangeRound([0,width - padding.left - padding.right]); 
       //定义x轴
       var xAxis = d3.axisBottom()
-        .scale(xScale)
-        
+        .scale(xScaleLabels)
+        .ticks(labels.length);
+      // In pixels
       //定义y轴
       var yAxis = d3.axisLeft()
         .scale(yScale)
@@ -149,7 +154,7 @@ export default {
       .attr('font-weight', '700')
       .attr('text-anchor', 'middle')
       .attr('x', width/2)
-      .attr('y', 20)
+      .attr('y', 20*scale)
         .text(data.title)
       var duration = config.delay * data.values.length + config.duration * 2;
       return duration;

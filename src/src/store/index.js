@@ -60,6 +60,7 @@ const store = new Vuex.Store({
         case 'BarChartA':
           clip.data={
             values: [100, 80, 78, 98, 93, 82],
+            names:['A','B','C','D','E','F'],
             title: "Default Title"
           };
           clip.config={
@@ -81,6 +82,7 @@ const store = new Vuex.Store({
           case 'BarChartB':
             clip.data={
               values:[200, 44, 30, 98, 250],
+              names:['A','B','C','D','E'],
               title:"Default Title"
             };
             clip.config = {

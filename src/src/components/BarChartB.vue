@@ -64,10 +64,19 @@ export default {
         .scaleBand()
         .domain(d3.range(data.values.length))
         .range([0,width - padding.left - padding.right]);
-      
+      var labels=data.names;
+      var xScaleLabels = d3
+      .scaleBand()
+      .domain(labels)
+      .rangeRound([0,width - padding.left - padding.right]); 
       //定义x轴
       var xAxis = d3.axisBottom()
-        .scale(xScale)
+        .scale(xScaleLabels)
+        .ticks(labels.length);
+      // In pixels
+      //定义y轴
+      //定义x轴
+      
         
 
       //定义y轴
