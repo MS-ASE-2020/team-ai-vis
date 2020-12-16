@@ -66,7 +66,7 @@ const store = new Vuex.Store({
             delay:200,
             duration:1000,
             barPadding:8,
-            opacity:8,
+            opacity:7,
             fontsize:12,
             bar: {
               beginColor:'red',
@@ -74,20 +74,20 @@ const store = new Vuex.Store({
             },
             text: {
               beginColor:'steelblue',
-              endColor:'red'
+              endColor:'white'
             }
           };
           break;
           case 'BarChartB':
             clip.data={
-              values:[100, 80, 78, 98, 93, 82],
+              values:[300, 44, 30, 98, 520],
               title:"aaa"
             };
             clip.config = {
               delay:200,
               duration:1000,
               barPadding:8,
-              opacity:5,
+              opacity:7,
               fontsize:12,
               bar: {
                 beginColor:'red',
@@ -95,7 +95,7 @@ const store = new Vuex.Store({
               },
               text: {
                 beginColor:'steelblue',
-                endColor:'red'
+                endColor:'white'
               }
             };
             break;
