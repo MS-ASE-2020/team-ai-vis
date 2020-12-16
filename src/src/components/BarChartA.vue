@@ -86,10 +86,11 @@ export default {
         .attr("width", xScale.bandwidth() - config.barPadding)
       
         .transition() //开启过渡效果
-        .delay(function (d, i) {
+        .delay(config.delay) 
           //指定延迟的时间，表示一定时间后才开始转变，单位同样为毫秒
-          return config.delay * (i+1);
-        })
+          //return config.delay * (i+1);
+          //return config.delay;
+        //})
         .duration(config.duration) //执行动画的时间--毫秒
         //.ease(d3.easeBounceIn)
         .attr("y", (d) => yScale(d))
@@ -117,10 +118,10 @@ export default {
         .attr("x",(d,i)=>xScale(i) + config.barPadding/2)
         .attr("y",yScale(min))
         .transition() //开启过渡效果
-        .delay(function (d, i) {
+        .delay(config.delay) 
           //指定延迟的时间，表示一定时间后才开始转变，单位同样为毫秒
-          return config.delay * (i+1);
-        })
+          //return config.delay * (i+1);
+        //})
         .duration(config.duration) //执行动画的时间--毫秒
         .text((d) => d)
         .attr("font-size", (temp)+"px")
