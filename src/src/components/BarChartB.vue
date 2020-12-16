@@ -58,7 +58,7 @@ export default {
         .scaleLinear()
         .domain([0, d3.max(data.values)])
         .range([height - padding.top - padding.bottom, 0]);
-      var min = yScale.domain()[0]
+      //var min = yScale.domain()[0]
 
       let xScale =d3
         .scaleBand()
@@ -90,12 +90,13 @@ export default {
         .attr("class", "bar")
         .attr("transform","translate(" + padding.left + "," + padding.top + ")")
         .attr("x", (d, i) => xScale(i) + config.barPadding/2)
-        .attr("height", 0)
-        .attr("y",yScale(min))
-        .style("position","relative")
+        //.attr("height", 0)
+        .attr("height", (d) => height - padding.top - padding.bottom - yScale(d))
+        .attr("y",(d) => yScale(d))
+        //.style("position","relative")
         //.style("bottom","0px")
+        .attr("fill",'white')
         .attr("width", xScale.bandwidth() - config.barPadding)
-      
         .transition() //开启过渡效果
         .delay(function (d, i) {
           //指定延迟的时间，表示一定时间后才开始转变，单位同样为毫秒
@@ -104,14 +105,14 @@ export default {
         .duration(config.duration) //执行动画的时间--毫秒
         //.ease(d3.easeBounceIn)
         .attr("y", (d) => yScale(d))
-        .style("position","relative")
+        //.style("position","relative")
         //.style("bottom","0px")
-        .attr("height", (d) => height - padding.top - padding.bottom - yScale(d))
+        //.attr("height", (d) => height - padding.top - padding.bottom - yScale(d))
         .attr("width", xScale.bandwidth() - config.barPadding)
         //.attr("fill", config.bar.beginColor) //初始颜色为红色
         //.transition() //启动过渡
-        .style("position","relative")
-        .style("bottom","100px")
+        //.style("position","relative")
+        //.style("bottom","100px")
         //.attr("fill", config.bar.endColor) //终止颜色为铁蓝色
         .attr("opacity",config.opacity / 10.0)
         .style("fill",function(d){
@@ -127,7 +128,8 @@ export default {
         .attr("font-size", (temp)+"px")
         .attr("transform","translate(" + padding.left + "," + padding.top + ")")
         .attr("x",(d,i)=>xScale(i) + config.barPadding/2)
-        .attr("y",yScale(min))
+        .attr("y",(d) => yScale(d) + 20)
+        .attr("fill",'white')
         .transition() //开启过渡效果
         .delay(function (d, i) {
           //指定延迟的时间，表示一定时间后才开始转变，单位同样为毫秒

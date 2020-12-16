@@ -30,8 +30,8 @@ export default {
       root.select('svg').remove();
       //let barWidth = width / data.values.length;
       
-      var ascendvalue=Array.from(data.values);
-      ascendvalue.sort(d3.ascending)
+      //var ascendvalue=Array.from(data.values);
+      //ascendvalue.sort(d3.ascending)
       // var descendvalue=data.values
       // descendvalue.sort(d3.descending)
       var scale = width / 250;
@@ -72,8 +72,8 @@ export default {
         .attr("fill", "#fff");
       svg
         .selectAll("rect.bar")
-        //.data(data.values)
-        .data(ascendvalue)
+        .data(data.values)
+        //.data(ascendvalue)
         .enter()
         .append("rect")
         .attr("class", "bar")
@@ -108,8 +108,8 @@ export default {
 				});
       svg
         .selectAll("text")
-        //.data(data.values)
-        .data(ascendvalue)
+        .data(data.values)
+        //.data(ascendvalue)
         .enter()
         .append("text")
         .attr("font-size", (temp)+"px")

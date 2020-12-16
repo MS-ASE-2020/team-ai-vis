@@ -74,7 +74,7 @@ const store = new Vuex.Store({
             },
             text: {
               beginColor:'steelblue',
-              endColor:'red'
+              endColor:'white'
             }
           };
           break;
@@ -95,7 +95,7 @@ const store = new Vuex.Store({
               },
               text: {
                 beginColor:'steelblue',
-                endColor:'red'
+                endColor:'white'
               }
             };
             break;
