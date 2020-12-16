@@ -18,19 +18,19 @@
 </template>
 
 <script>
-import Clips from '@/components/Clips.vue';
-import Config from '@/components/Config.vue';
-import Library from '@/components/Library.vue';
-import NavMenu from '@/components/NavMenu.vue';
+import Clips from "@/components/Clips.vue";
+import Config from "@/components/Config.vue";
+import Library from "@/components/Library.vue";
+import NavMenu from "@/components/NavMenu.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Clips,
     Config,
     Library,
-    NavMenu
-  }
+    NavMenu,
+  },
 };
 </script>
 
@@ -39,8 +39,8 @@ export default {
   margin: 0;
   padding: 0;
 }
-body {	
-  overflow: hidden;	
+body {
+  overflow: hidden;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

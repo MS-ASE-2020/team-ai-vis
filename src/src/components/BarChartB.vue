@@ -1,6 +1,5 @@
 <template>
-  <div class="bar-chart-b" :id="id">
-  </div>
+  <div class="bar-chart-b" :id="id"></div>
 </template>
 
 <script>
@@ -21,38 +20,36 @@ export default {
     initChart() {
       var root = d3.select(`#${this.id}`);
       var width = this.svgWidth;
-      var height = this.svgHeight; 
+      var height = this.svgHeight;
       var data = this.clip.data;
       var config = this.clip.config;
       this.renderClip(root, width, height, data, config);
     },
     renderClip(root, width, height, data, config) {
-      root.select('svg').remove();
+      root.select("svg").remove();
 
       //let barWidth = width / data.values.length;
-      
-      var ascendvalue=Array.from(data.values);
-      ascendvalue.sort(d3.ascending)
-      console.log(config)
+
+      var ascendvalue = Array.from(data.values);
+      ascendvalue.sort(d3.ascending);
+      console.log(config);
       // var descendvalue=data.values
       // descendvalue.sort(d3.descending)
 
       var scale = width / 250;
-      var temp = config.fontsize *scale;
-      var padding = {left:40, right:40, top:40, bottom:40};
+      var temp = config.fontsize * scale;
+      var padding = { left: 40, right: 40, top: 40, bottom: 40 };
 
-      var b = config.startColor;	//红色
-      var a = config.endColor;	//绿色
-      var compute = d3.interpolate(a,b);
+      var b = config.startColor; //红色
+      var a = config.endColor; //绿色
+      var compute = d3.interpolate(a, b);
 
-      var linearcolor = d3.scaleLinear()
-				.domain([d3.min(data.values),d3.max(data.values)])
-				.range([0,1]);
+      var linearcolor = d3
+        .scaleLinear()
+        .domain([d3.min(data.values), d3.max(data.values)])
+        .range([0, 1]);
 
-      let svg = root
-        .append("svg")
-        .attr("width", width)
-        .attr("height", height);
+      let svg = root.append("svg").attr("width", width).attr("height", height);
 
       let yScale = d3
         .scaleLinear()
@@ -60,29 +57,23 @@ export default {
         .range([height - padding.top - padding.bottom, 0]);
       //var min = yScale.domain()[0]
 
-      let xScale =d3
+      let xScale = d3
         .scaleBand()
         .domain(d3.range(data.values.length))
-        .range([0,width - padding.left - padding.right]);
-      var labels=data.names;
+        .range([0, width - padding.left - padding.right]);
+      var labels = data.names;
       var xScaleLabels = d3
-      .scaleBand()
-      .domain(labels)
-      .rangeRound([0,width - padding.left - padding.right]); 
+        .scaleBand()
+        .domain(labels)
+        .rangeRound([0, width - padding.left - padding.right]);
       //定义x轴
-      var xAxis = d3.axisBottom()
-        .scale(xScaleLabels)
-        .ticks(labels.length);
+      var xAxis = d3.axisBottom().scale(xScaleLabels).ticks(labels.length);
       // In pixels
       //定义y轴
       //定义x轴
-      
-        
 
       //定义y轴
-      var yAxis = d3.axisLeft()
-        .scale(yScale)
-  
+      var yAxis = d3.axisLeft().scale(yScale);
 
       svg
         .append("rect")
@@ -97,19 +88,25 @@ export default {
         .enter()
         .append("rect")
         .attr("class", "bar")
-        .attr("transform","translate(" + padding.left + "," + padding.top + ")")
-        .attr("x", (d, i) => xScale(i) + config.barPadding/2)
+        .attr(
+          "transform",
+          "translate(" + padding.left + "," + padding.top + ")"
+        )
+        .attr("x", (d, i) => xScale(i) + config.barPadding / 2)
         //.attr("height", 0)
-        .attr("height", (d) => height - padding.top - padding.bottom - yScale(d))
-        .attr("y",(d) => yScale(d))
+        .attr(
+          "height",
+          (d) => height - padding.top - padding.bottom - yScale(d)
+        )
+        .attr("y", (d) => yScale(d))
         //.style("position","relative")
         //.style("bottom","0px")
-        .attr("fill",'white')
+        .attr("fill", "white")
         .attr("width", xScale.bandwidth() - config.barPadding)
         .transition() //开启过渡效果
         .delay(function (d, i) {
           //指定延迟的时间，表示一定时间后才开始转变，单位同样为毫秒
-          return config.delay * (i+1);
+          return config.delay * (i + 1);
         })
         .duration(config.duration) //执行动画的时间--毫秒
         //.ease(d3.easeBounceIn)
@@ -123,10 +120,10 @@ export default {
         //.style("position","relative")
         //.style("bottom","100px")
         //.attr("fill", config.bar.endColor) //终止颜色为铁蓝色
-        .attr("opacity",config.opacity / 10.0)
-        .style("fill",function(d){
-					return compute(linearcolor(d));
-				});
+        .attr("opacity", config.opacity / 10.0)
+        .style("fill", function (d) {
+          return compute(linearcolor(d));
+        });
 
       svg
         .selectAll("text")
@@ -134,50 +131,62 @@ export default {
         .data(ascendvalue)
         .enter()
         .append("text")
-        .attr("font-size", (temp)+"px")
-        .attr("transform","translate(" + padding.left + "," + padding.top + ")")
-        .attr("x",(d,i)=>xScale(i) + config.barPadding/2)
-        .attr("y",(d) => yScale(d) + 20)
-        .attr("fill",'white')
+        .attr("font-size", temp + "px")
+        .attr(
+          "transform",
+          "translate(" + padding.left + "," + padding.top + ")"
+        )
+        .attr("x", (d, i) => xScale(i) + config.barPadding / 2)
+        .attr("y", (d) => yScale(d) + 20)
+        .attr("fill", "white")
         .transition() //开启过渡效果
         .delay(function (d, i) {
           //指定延迟的时间，表示一定时间后才开始转变，单位同样为毫秒
-          return config.delay * (i+1);
+          return config.delay * (i + 1);
         })
         .duration(config.duration) //执行动画的时间--毫秒
         .text((d) => d)
-        .attr("font-size", (temp)+"px")
+        .attr("font-size", temp + "px")
         .attr("y", (d) => yScale(d) + 20)
-        .attr("x",(d,i)=>xScale(i) + config.barPadding/2)
+        .attr("x", (d, i) => xScale(i) + config.barPadding / 2)
         //.attr("fill", config.text.beginColor) //初始颜色为红色
         //.transition() //启动过渡
         .attr("fill", config.text.endColor); //终止颜色为铁蓝色
       //添加x轴
       svg
         .append("g")
-        .attr("class","axis")
-        .attr("transform","translate(" + padding.left + "," + (height - padding.bottom) + ")")
-        .call(xAxis); 
+        .attr("class", "axis")
+        .attr(
+          "transform",
+          "translate(" + padding.left + "," + (height - padding.bottom) + ")"
+        )
+        .call(xAxis);
 
       //添加y轴
       svg
         .append("g")
-        .attr("class","axis")
-        .attr("transform","translate(" + padding.left + "," + padding.top + ")")
+        .attr("class", "axis")
+        .attr(
+          "transform",
+          "translate(" + padding.left + "," + padding.top + ")"
+        )
         .call(yAxis);
-      svg.append('g')
-      .append("text")
-      .attr('fill', '#000')
-      .attr('font-size', 12 * scale +'px')
-      .attr('font-weight', '700')
-      .attr('text-anchor', 'middle')
-      .attr('x', width/2)
-      .attr('y', 15*scale)
-        .text(config.title)
+      svg
+        .append("g")
+        .append("text")
+        .attr("fill", "#000")
+        .attr("font-size", 12 * scale + "px")
+        .attr("font-weight", "700")
+        .attr("text-anchor", "middle")
+        .attr("x", width / 2)
+        .attr("y", 15 * scale)
+        .text(config.title);
 
-      var duration = config.delay * data.values.length + config.duration * 2;
-      return duration;
-    }
+      return this.getDuration(data, config);
+    },
+    getDuration(data, config) {
+      return config.delay * data.values.length + config.duration * 2;
+    },
   },
   mounted() {
     this.initChart();
@@ -201,9 +210,9 @@ export default {
   border: 1px solid #d7dae2;
   border-radius: 4px;
 }
-.bar{
+.bar {
   position: absolute;
-  top:0;
+  top: 0;
   border: 10px solid #d7dae2;
 }
 </style>

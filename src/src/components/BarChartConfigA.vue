@@ -28,13 +28,13 @@
 
 <script>
 export default {
-  name: 'BarChartConfigA',
+  name: "BarChartConfigA",
   computed: {
-    config: function() {
+    config: function () {
       return this.$store.state.focusedClip.config;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>

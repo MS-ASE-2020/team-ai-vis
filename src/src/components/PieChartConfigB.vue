@@ -1,6 +1,6 @@
 <template>
   <div class="pie-chart-config-b">
-      <el-form label-width="80px" :model="config">
+    <el-form label-width="80px" :model="config">
       <el-form-item label="title">
         <el-input v-model="config.title"></el-input>
       </el-form-item>
@@ -19,23 +19,22 @@
       <el-form-item label="fontsize">
         <el-input v-model.number="config.fontsize"></el-input>
       </el-form-item>
-       <el-form-item label="stroke">
+      <el-form-item label="stroke">
         <el-input v-model.number="config.strokewidth"></el-input>
       </el-form-item>
-      
     </el-form>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'PieChartConfigB',
+  name: "PieChartConfigB",
   computed: {
-    config: function() {
+    config: function () {
       return this.$store.state.focusedClip.config;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
