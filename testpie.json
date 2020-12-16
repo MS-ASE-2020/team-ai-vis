@@ -1,9 +1,0 @@
-{
-    "values": [
-      { "country": "USA", "value": 20 },
-      { "country": "China", "value": 13.4 },
-      { "country": "Germany", "value": 46.0 },
-      { "country": "Japan", "value": 4.9 },
-      { "country": "France", "value": 2.8 }
-    ]
-  }
