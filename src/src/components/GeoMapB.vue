@@ -63,6 +63,8 @@ export default {
     renderClip(root, width, height, data, config) {
       
       root.select('svg').remove();
+      console.log(config);
+      console.log(data)
       let svg = root.append("svg")
     .attr("width", width)
     .attr("height", height)
@@ -72,12 +74,13 @@ export default {
         .attr("height", height)
         .attr("fill", "#fff");
     let projection = d3.geoMercator()
-    .center([104,38])
+    .center([-96,40])
     .scale(width)
     .translate([width / 2, height / 2])
     let path = d3.geoPath().projection(projection)
-    var mapData = require("@/assets/china.json");
+    var mapData = require("@/assets/uscity.json");
     var pointData = data
+    console.log(pointData)
     var point = pointData.features;
     var coo = function(d){
         var lngLat = d.geometry.coordinates;
@@ -87,6 +90,7 @@ export default {
       var ss2 = d3.schemePastel2;
       var features = mapData.features;
       var size = pointData.size;
+      console.log(features);
       console.log(size);
       const g = svg.append("g");
       
@@ -96,7 +100,7 @@ export default {
         .append("path")
         .attr('d', path)
 				.attr("fill", function(d, i) {
-					return ss2[i % 3]
+					return ss2[i % 4]
 				})
 				
       g.selectAll('circle')
@@ -130,7 +134,7 @@ export default {
       .attr('font-weight', '700')
       .attr('text-anchor', 'middle')
       .attr('x', width/2)
-      .attr('y', 20)
+      .attr('y', 20*scale)
         .text(data.title)
       //g.attr("transform", "translate("+(width)/2+","+(height)/2+")");
       //g.attr("transform", "translate("+(width)/2+","+(height)/2+")");

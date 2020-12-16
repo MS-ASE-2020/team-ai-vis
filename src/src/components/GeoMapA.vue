@@ -130,7 +130,7 @@ export default {
       .attr('font-weight', '700')
       .attr('text-anchor', 'middle')
       .attr('x', width/2)
-      .attr('y', 20)
+      .attr('y', 20*scale)
         .text(data.title)
       //g.attr("transform", "translate("+(width)/2+","+(height)/2+")");
       //g.attr("transform", "translate("+(width)/2+","+(height)/2+")");

@@ -60,7 +60,7 @@ const store = new Vuex.Store({
         case 'BarChartA':
           clip.data={
             values: [100, 80, 78, 98, 93, 82],
-            title: "aaa"
+            title: "Default Title"
           };
           clip.config={
             delay:200,
@@ -81,7 +81,7 @@ const store = new Vuex.Store({
           case 'BarChartB':
             clip.data={
               values:[300, 44, 30, 98, 520],
-              title:"aaa"
+              title:"Default Title"
             };
             clip.config = {
               delay:200,
@@ -154,7 +154,7 @@ const store = new Vuex.Store({
         }
       }
     ],
-    title: "aaa"}
+    title: "Default Title"}
           break;
           case 'GeoMapB':
             clip.config={
@@ -164,60 +164,71 @@ const store = new Vuex.Store({
             };
             clip.data={
               "type": "FeatureCollection",
-      "size":[5,10,5,5,5,10],
-      "features": [
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              105.84228515625,
-              30.41078179084589
-            ]
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              114.19189453125,
-              22.329752304376473
-            ]
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              110.3466796875,
-              25.443274612305746
-            ]
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              112.3681640625,
-              34.56085936708384
-            ]
-          }
-        }
-      ],
-      title: "aaa"}
+              "size":[5,10,5,5,5],
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.75390625,
+          39.774769485295465
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -101.77734374999999,
+          35.10193405724606
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.349609375,
+          43.89789239125797
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.28515625,
+          32.76880048488168
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.47656249999999,
+          41.376808565702355
+        ]
+      }
+    }
+  ],
+      title: "Default Title"};
             break;
         case 'LineChartA':
           clip.data = {
             values: [[1, 224], [2, 528], [3, 756], [4, 632], [5, 582], [6, 704],
             [7, 766], [8, 804], [9, 884], [10, 960], [11, 1095], [12, 1250]],
-            title:"aaa"
+            title:"Default Title"
           };
           clip.config = {
             delay: 200,
@@ -230,7 +241,7 @@ const store = new Vuex.Store({
             clip.data = {
               values: [[1, 224], [2, 528], [3, 756], [4, 632], [5, 582], [6, 704],
               [7, 766], [8, 804], [9, 884], [10, 960], [11, 1095], [12, 1250]],
-              title:"aaa"
+              title:"Default Title"
             };
             clip.config = {
               delay: 200,
@@ -242,13 +253,13 @@ const store = new Vuex.Store({
         case 'PieChartA':
           clip.data = {
             values: [
-              { country: "USA", value: 20 },
-              { country: "China", value: 13.4 },
-              { country: "Germany", value: 4.0 },
-              { country: "Japan", value: 4.9 },
-              { country: "France", value: 2.8 }
+              { country: "A", value: 20 },
+              { country: "B", value: 13.4 },
+              { country: "C", value: 4.0 },
+              { country: "D", value: 4.9 },
+              { country: "E", value: 2.8 }
             ],
-            title: "aaa"
+            title: "Default Title"
           };
           clip.config = {
             delay: 200,
@@ -262,13 +273,10 @@ const store = new Vuex.Store({
           case 'PieChartB':
           clip.data = {
             values: [
-              { country: "USA", value: 20 },
-              { country: "China", value: 13.4 },
-              { country: "Germany", value: 4.0 },
-              { country: "Japan", value: 4.9 },
-              { country: "France", value: 2.8 }
+              15,15,40,30
             ],
-            title: "aaa"
+            names:["A","B","C","D"],
+            title: "Default Title"
           };
           clip.config = {
             delay: 200,
