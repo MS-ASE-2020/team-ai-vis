@@ -22,13 +22,13 @@
 
 <script>
 export default {
-  name: 'LineChartConfigB',
+  name: "LineChartConfigB",
   computed: {
-    config: function() {
+    config: function () {
       return this.$store.state.focusedClip.config;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>

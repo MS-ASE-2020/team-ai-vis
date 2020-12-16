@@ -22,13 +22,13 @@
 
 <script>
 export default {
-  name: 'GeoMapConfigA',
+  name: "GeoMapConfigA",
   computed: {
-    config: function() {
+    config: function () {
       return this.$store.state.focusedClip.config;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>

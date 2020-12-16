@@ -12,12 +12,34 @@
             :on-exceed="handleExceed"
             :file-list="fileList"
             :auto-upload="false"
-            :show-file-list="false">
-            <el-button class="upload-btn" slot="trigger" type="primary" size="small">Upload data</el-button>
-            
-            <el-button type="primary" @click="$store.commit('left', $store.state.focusedClip)" size="small">Left</el-button>
-            <el-button type="primary" @click="$store.commit('right', $store.state.focusedClip)" size="small">Right</el-button>
-            <el-button type="danger" @click="$store.commit('deleteClip', $store.state.focusedClip)" size="small">Delete Clip</el-button>
+            :show-file-list="false"
+          >
+            <el-button
+              class="upload-btn"
+              slot="trigger"
+              type="primary"
+              size="small"
+              >Upload data</el-button
+            >
+
+            <el-button
+              type="primary"
+              @click="$store.commit('left', $store.state.focusedClip)"
+              size="small"
+              >Left</el-button
+            >
+            <el-button
+              type="primary"
+              @click="$store.commit('right', $store.state.focusedClip)"
+              size="small"
+              >Right</el-button
+            >
+            <el-button
+              type="danger"
+              @click="$store.commit('deleteClip', $store.state.focusedClip)"
+              size="small"
+              >Delete Clip</el-button
+            >
           </el-upload>
         </div>
       </div>
@@ -54,16 +76,16 @@
 </template>
 
 <script>
-import BarChartConfigA from '@/components/BarChartConfigA.vue';
-import GeoMapConfigA from '@/components/GeoMapConfigA.vue';
-import LineChartConfigA from '@/components/LineChartConfigA.vue';
-import PieChartConfigA from '@/components/PieChartConfigA.vue';
-import BarChartConfigB from '@/components/BarChartConfigB.vue';
-import GeoMapConfigB from '@/components/GeoMapConfigB.vue';
-import LineChartConfigB from '@/components/LineChartConfigB.vue';
-import PieChartConfigB from '@/components/PieChartConfigB.vue';
+import BarChartConfigA from "@/components/BarChartConfigA.vue";
+import GeoMapConfigA from "@/components/GeoMapConfigA.vue";
+import LineChartConfigA from "@/components/LineChartConfigA.vue";
+import PieChartConfigA from "@/components/PieChartConfigA.vue";
+import BarChartConfigB from "@/components/BarChartConfigB.vue";
+import GeoMapConfigB from "@/components/GeoMapConfigB.vue";
+import LineChartConfigB from "@/components/LineChartConfigB.vue";
+import PieChartConfigB from "@/components/PieChartConfigB.vue";
 export default {
-  name: 'Config',
+  name: "Config",
   components: {
     BarChartConfigA,
     GeoMapConfigA,
@@ -72,11 +94,11 @@ export default {
     BarChartConfigB,
     GeoMapConfigB,
     LineChartConfigB,
-    PieChartConfigB
+    PieChartConfigB,
   },
   data() {
     return {
-      fileList: []
+      fileList: [],
     };
   },
   methods: {
@@ -90,7 +112,7 @@ export default {
       var vm = this;
       reader.onload = function (e) {
         var data = JSON.parse(e.target.result);
-        vm.$store.commit('updateData', data);
+        vm.$store.commit("updateData", data);
       };
     },
     handleExceed(files, fileList) {
@@ -98,15 +120,15 @@ export default {
         name: files[0].name,
         percentage: 0,
         raw: files[0],
-        status: 'ready',
-        uid: 0
-      }
+        status: "ready",
+        uid: 0,
+      };
       fileList.splice(0, 1);
       fileList.push(file);
       this.handleChange(file, fileList);
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -129,6 +151,6 @@ export default {
   margin-bottom: 20px;
 }
 .config >>> .el-form > :last-child {
-  margin-bottom: 0 !important; 
+  margin-bottom: 0 !important;
 }
 </style>
