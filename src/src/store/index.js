@@ -80,7 +80,7 @@ const store = new Vuex.Store({
           break;
           case 'BarChartB':
             clip.data={
-              values:[100, 80, 78, 98, 93, 82],
+              values:[300, 44, 30, 98, 520],
               title:"aaa"
             };
             clip.config = {
