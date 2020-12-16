@@ -66,7 +66,7 @@ const store = new Vuex.Store({
             delay:200,
             duration:1000,
             barPadding:8,
-            opacity:8,
+            opacity:7,
             fontsize:12,
             bar: {
               beginColor:'red',
@@ -87,7 +87,7 @@ const store = new Vuex.Store({
               delay:200,
               duration:1000,
               barPadding:8,
-              opacity:5,
+              opacity:7,
               fontsize:12,
               bar: {
                 beginColor:'red',

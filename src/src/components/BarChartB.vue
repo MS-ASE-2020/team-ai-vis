@@ -41,8 +41,8 @@ export default {
       var temp = config.fontsize *scale;
       var padding = {left:40, right:40, top:40, bottom:40};
 
-      var b = d3.rgb(0,0,100);	//红色
-      var a = d3.rgb(0,100,255);	//绿色
+      var b = d3.rgb(150,0,0);	//红色
+      var a = d3.rgb(255,200,0);	//绿色
       var compute = d3.interpolate(a,b);
 
       var linearcolor = d3.scaleLinear()
