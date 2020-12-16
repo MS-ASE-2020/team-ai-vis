@@ -41,8 +41,8 @@ export default {
       var temp = config.fontsize *scale;
       var padding = {left:40, right:40, top:40, bottom:40};
 
-      var b = d3.rgb(150,0,0);	//红色
-      var a = d3.rgb(255,200,0);	//绿色
+      var b = config.startColor;	//红色
+      var a = config.endColor;	//绿色
       var compute = d3.interpolate(a,b);
 
       var linearcolor = d3.scaleLinear()
@@ -172,8 +172,8 @@ export default {
       .attr('font-weight', '700')
       .attr('text-anchor', 'middle')
       .attr('x', width/2)
-      .attr('y', 20)
-        .text(data.title)
+      .attr('y', 15*scale)
+        .text(config.title)
 
       var duration = config.delay * data.values.length + config.duration * 2;
       return duration;
