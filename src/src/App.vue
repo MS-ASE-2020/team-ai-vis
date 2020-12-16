@@ -39,6 +39,9 @@ export default {
   margin: 0;
   padding: 0;
 }
+body {	
+  overflow: hidden;	
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -62,6 +65,7 @@ export default {
 }
 .el-main {
   padding: 0 0 0 20px;
+  overflow: hidden;
 }
 .clips {
   height: 295px;

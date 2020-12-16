@@ -1,24 +1,28 @@
 <template>
   <div class="config">
-    <div class="title">Configuration</div>
-    <div v-if="$store.state.focusedClip !== null">
-      <div class="upload">
-        <el-upload
-          action=""
-          :limit="1"
-          :on-change="handleChange"
-          :on-remove="handleRemove"
-          :on-exceed="handleExceed"
-          :file-list="fileList"
-          :auto-upload="false"
-          :show-file-list="false">
-          <el-button slot="trigger" type="primary" size="small">Upload data</el-button>
-          
-          <el-button id = 'dir' type="primary" @click="$store.commit('left', $store.state.focusedClip)" size="small">Left</el-button>
-          <el-button id = 'dir' type="primary" @click="$store.commit('right', $store.state.focusedClip)" size="small">Right</el-button>
-          <el-button id = "warn" type="primary" @click="$store.commit('deleteClip', $store.state.focusedClip)" size="small">Delete Clip</el-button>
-        </el-upload>
+    <div class="config-bar">
+      <div class="title">Configuration</div>
+      <div v-if="$store.state.focusedClip !== null">
+        <div class="upload">
+          <el-upload
+            action=""
+            :limit="1"
+            :on-change="handleChange"
+            :on-remove="handleRemove"
+            :on-exceed="handleExceed"
+            :file-list="fileList"
+            :auto-upload="false"
+            :show-file-list="false">
+            <el-button class="upload-btn" slot="trigger" type="primary" size="small">Upload data</el-button>
+            
+            <el-button type="primary" @click="$store.commit('left', $store.state.focusedClip)" size="small">Left</el-button>
+            <el-button type="primary" @click="$store.commit('right', $store.state.focusedClip)" size="small">Right</el-button>
+            <el-button type="danger" @click="$store.commit('deleteClip', $store.state.focusedClip)" size="small">Delete Clip</el-button>
+          </el-upload>
+        </div>
       </div>
+    </div>
+    <div v-if="$store.state.focusedClip !== null">
       <div class="config-detail">
         <div v-if="$store.state.focusedClip.type === 'BarChartA'">
           <bar-chart-config-a></bar-chart-config-a>
@@ -45,7 +49,6 @@
           <pie-chart-config-b></pie-chart-config-b>
         </div>
       </div>
-      
     </div>
   </div>
 </template>
@@ -109,17 +112,23 @@ export default {
 <style scoped>
 .title {
   margin-bottom: 15px;
+  margin-right: auto;
+}
+.config-bar {
+  display: flex;
 }
 .upload {
   margin-bottom: 15px;
 }
-#warn{
-  color: white;
-  background-color: red;
-  margin-left: 15px;
+.upload-btn {
+  margin-right: 15px;
 }
-#dir{
-  color: white;
-  margin-left: 15px;
+.config-detail {
+  height: calc(100vh - 580px);
+  overflow: auto;
+  margin-bottom: 20px;
+}
+.config >>> .el-form > :last-child {
+  margin-bottom: 0 !important; 
 }
 </style>
