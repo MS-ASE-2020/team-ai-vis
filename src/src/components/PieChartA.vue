@@ -83,8 +83,8 @@ export default {
         .data(data.values)
         .enter()
         .append("text")
-        .text(d => `${d.country} -  ${d.value} Trillion`)
-        .attr("dx", -120*scale)
+        .text(d => `${d.country} -  ${d.value} `)
+        .attr("dx", -80*scale)
         .attr("dy", -4*scale)
         .attr("y", (d, i) => -(i + 1) * scale * 15)
         .attr("font-size", (temp)+"px")
@@ -95,7 +95,7 @@ export default {
       .attr('font-weight', '700')
       .attr('text-anchor', 'middle')
       .attr('x', width/2)
-      .attr('y', 20)
+      .attr('y', 20*scale)
         .text(data.title)
       g.attr("transform", "translate("+(width)/2+","+(height)/2+")");
       var duration = config.delay * data.values.length + config.duration * 2;
