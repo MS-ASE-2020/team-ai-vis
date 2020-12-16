@@ -113,7 +113,7 @@ export default {
 				.attr("cy", function(d){
 					return coo(d)[1];
 				})
-        .attr("fill", "black")
+        .attr("fill", config.color)
         .transition()
         .delay(function(d,i){
           return config.delay* i;
@@ -129,13 +129,13 @@ export default {
       //var temp = config.fontsize *scale;
       svg.append('g')
       .append("text")
-      .attr('fill', '#000')
+      .attr('fill', "black")
       .attr('font-size', 12 * scale +'px')
       .attr('font-weight', '700')
       .attr('text-anchor', 'middle')
       .attr('x', width/2)
-      .attr('y', 20*scale)
-        .text(data.title)
+      .attr('y', 15*scale)
+        .text(config.title)
       //g.attr("transform", "translate("+(width)/2+","+(height)/2+")");
       //g.attr("transform", "translate("+(width)/2+","+(height)/2+")");
       var duration = config.delay * size.length + config.duration * 2;

@@ -36,9 +36,9 @@ export default {
       // descendvalue.sort(d3.descending)
       var scale = width / 250;
       var temp = config.fontsize *scale;
-      var padding = {left:40, right:40, top:40, bottom:40};
-      var b = d3.rgb(0,0,100);	//红色
-      var a = d3.rgb(0,100,255);	//绿色
+      var padding = {left:40*scale, right:40*scale, top:40*scale, bottom:40*scale};
+      var b = config.startColor;	//红色
+      var a = config.endColor;	//绿色
       var compute = d3.interpolate(a,b);
       var linearcolor = d3.scaleLinear()
 				.domain([d3.min(data.values),d3.max(data.values)])
@@ -120,7 +120,7 @@ export default {
         .append("text")
         .attr("font-size", (temp)+"px")
         .attr("transform","translate(" + padding.left + "," + padding.top + ")")
-        .attr("x",(d,i)=>xScale(i) + config.barPadding/2)
+        .attr("x",(d,i)=>xScale(i) +config.barPadding/2)
         .attr("y",yScale(min))
         .transition() //开启过渡效果
         .delay(config.delay) 
@@ -130,6 +130,7 @@ export default {
         .duration(config.duration) //执行动画的时间--毫秒
         .text((d) => d)
         .attr("font-size", (temp)+"px")
+        //.attr('text-anchor', 'middle')
         .attr("y", (d) => yScale(d) + 20)
         .attr("x",(d,i)=>xScale(i) + config.barPadding/2)
         //.attr("fill", config.text.beginColor) //初始颜色为红色
@@ -154,8 +155,8 @@ export default {
       .attr('font-weight', '700')
       .attr('text-anchor', 'middle')
       .attr('x', width/2)
-      .attr('y', 20*scale)
-        .text(data.title)
+      .attr('y', 15*scale)
+        .text(config.title)
       var duration = config.delay * data.values.length + config.duration * 2;
       return duration;
     }

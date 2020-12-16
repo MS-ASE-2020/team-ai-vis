@@ -1,6 +1,9 @@
 <template>
   <div class="pie-chart-config-a">
       <el-form label-width="80px" :model="config">
+        <el-form-item label="title">
+        <el-input v-model="config.title"></el-input>
+      </el-form-item>
       <el-form-item label="delay">
         <el-input v-model.number="config.delay"></el-input>
       </el-form-item>

@@ -69,6 +69,9 @@ const store = new Vuex.Store({
             barPadding:8,
             opacity:7,
             fontsize:12,
+            startColor: 'blue',
+            endColor: 'green',
+            title: "Default Title",
             bar: {
               beginColor:'red',
               endColor:'steelblue'
@@ -91,6 +94,9 @@ const store = new Vuex.Store({
               barPadding:8,
               opacity:7,
               fontsize:12,
+              startColor: 'blue',
+            endColor: 'green',
+            title: "Default Title",
               bar: {
                 beginColor:'red',
                 endColor:'steelblue'
@@ -105,7 +111,9 @@ const store = new Vuex.Store({
           clip.config={
             delay:200,
             duration:1000,
-            size: 1
+            size: 1,
+            color: "black",
+            title: "Default Title"
           };
           clip.data={
             "type": "FeatureCollection",
@@ -162,7 +170,9 @@ const store = new Vuex.Store({
             clip.config={
               delay:200,
               duration:1000,
-              size: 1
+              size: 1,
+              color: "black",
+              title: "Default Title"
             };
             clip.data={
               "type": "FeatureCollection",
@@ -237,6 +247,7 @@ const store = new Vuex.Store({
             duration: 1000,
             strokewidth: 2,
             dotsize: 3,
+            title: "Default Title"
           };
           break;
           case 'LineChartB':
@@ -250,6 +261,7 @@ const store = new Vuex.Store({
               duration: 1000,
               strokewidth: 2,
               dotsize: 3,
+              title:"Default Title"
             };
             break;
         case 'PieChartA':
@@ -269,7 +281,8 @@ const store = new Vuex.Store({
             range: 180,
             opacity: 8,
             fontsize:12,
-            strokewidth:1
+            strokewidth:1,
+            title: "Default Title"
           };
           break;
           case 'PieChartB':

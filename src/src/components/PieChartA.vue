@@ -95,8 +95,8 @@ export default {
       .attr('font-weight', '700')
       .attr('text-anchor', 'middle')
       .attr('x', width/2)
-      .attr('y', 20*scale)
-        .text(data.title)
+      .attr('y', 15*scale)
+        .text(config.title)
       g.attr("transform", "translate("+(width)/2+","+(height)/2+")");
       var duration = config.delay * data.values.length + config.duration * 2;
       return duration;
