@@ -232,6 +232,7 @@ export default {
     },
     clearVideo() {
       d3.select(".video").selectAll("*").remove();
+      d3.select(".link").selectAll("*").remove();
     },
   },
   watch: {
