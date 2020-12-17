@@ -44,7 +44,7 @@ var max1 = d3.max(data.values, function(d) {
 
 
      
-      var padding = { top: 50, right: 50, bottom: 50, left: 50 };     
+      var padding = { top: 50*scale, right: 50*scale, bottom: 50 *scale, left: 50*scale };     
       var xScale = d3.scaleLinear()
               .domain([1,max1])
               .range([0, width - padding.left - padding.right]);
@@ -130,10 +130,13 @@ var max1 = d3.max(data.values, function(d) {
         .attr("x", width / 2)
         .attr("y", 15 * scale)
         .text(config.title);
-      var duration = config.delay * data.values.length + config.duration * 2+2000;
+      var duration = config.delay * data.values.length + config.duration * 2;
     console.log(duration)
-    return duration;
-    }
+    return this.getDuration(data,config);
+    },
+    getDuration(data, config) {
+      return config.delay * data.values.length + config.duration * 2;
+    },
   },
   mounted() {
     this.initChart();

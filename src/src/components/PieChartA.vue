@@ -78,7 +78,7 @@ export default {
 
       var temp = config.fontsize * scale;
       g.selectAll("text")
-        .data(data.values)
+        .data(arr)
         .enter()
         .append("text")
         .text((d) => `${d.country} -  ${d.value} `)
