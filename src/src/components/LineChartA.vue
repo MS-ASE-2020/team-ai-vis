@@ -39,7 +39,7 @@ export default {
       var a = config.startColor; //红色
       var b = config.endColor; //绿色
       var compute = d3.interpolate(a, b);
-
+      var scale = width / 250;
       var padding = {
         top: 50 * scale,
         right: 50 * scale,
@@ -107,7 +107,6 @@ export default {
         .attr("fill", "none")
         .attr("stroke-width", config.strokewidth)
         .attr("stroke", "black");
-      var scale = width / 250;
       svg
         .append("g")
         .append("text")
