@@ -83,7 +83,7 @@ const store = new Vuex.Store({
           break;
         case 'BarChartB':
           clip.data = {
-            values: [200, 44, 30, 98, 250],
+            values: [200, 44, 54, 98, 250],
             names: ['A', 'B', 'C', 'D', 'E'],
             title: "Default Title"
           };
@@ -94,7 +94,7 @@ const store = new Vuex.Store({
             opacity: 7,
             fontsize: 12,
             startColor: 'blue',
-            endColor: 'green',
+            endColor: 'red',
             title: "Default Title",
             bar: {
               beginColor: 'red',
@@ -247,21 +247,25 @@ const store = new Vuex.Store({
             delay: 200,
             duration: 1000,
             strokewidth: 2,
-            dotsize: 3,
-            title: "Default Title"
+            dotsize: 4,
+            title: "Default Title",
+            startColor:'yellow',
+            endColor:"red"
           };
           break;
         case 'LineChartB':
           clip.data = {
-            values: [[1, 224], [2, 528], [3, 756], [4, 632], [5, 582], [6, 704],
-            [7, 766], [8, 804], [9, 884], [10, 960], [11, 1095], [12, 1250]],
+            values: [[1, 254], [2, 228], [3, 156], [4, 332], [5, 682], [6,404],
+            [7, 366], [8, 204], [9, 184], [10, 560], [11, 395], [12, 250]],
             title: "Default Title"
           };
           clip.config = {
             delay: 200,
             duration: 1000,
             strokewidth: 2,
-            dotsize: 3,
+            dotsize: 4,
+            startColor:'green',
+            endColor:"blue",
             title: "Default Title"
           };
           break;
@@ -300,7 +304,8 @@ const store = new Vuex.Store({
             range: 180,
             opacity: 8,
             fontsize: 12,
-            strokewidth: 1
+            strokewidth: 1,
+            title: "Default Title"
           };
           break;
       }

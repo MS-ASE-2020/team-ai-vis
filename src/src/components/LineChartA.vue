@@ -36,8 +36,8 @@ export default {
 
       var linearcolor = d3.scaleLinear().domain([0, max]).range([0, 1]);
 
-      var a = d3.rgb(255, 250, 200); //红色
-      var b = d3.rgb(200, 0, 0); //绿色
+      var a = config.startColor; //红色
+      var b = config.endColor; //绿色
       var compute = d3.interpolate(a, b);
 
       var padding = { top: 50, right: 50, bottom: 50, left: 50 };
