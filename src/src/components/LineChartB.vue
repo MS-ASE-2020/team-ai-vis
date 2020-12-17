@@ -26,100 +26,129 @@ export default {
       this.renderClip(root, width, height, data, config);
     },
     renderClip(root, width, height, data, config) {
-      root.select('svg').remove();
- var max = d3.max(data.values, function(d) {
-  return d[1];
-})
-var max1 = d3.max(data.values, function(d) {
-  return d[0];
-})
+      root.select("svg").remove();
+      var max = d3.max(data.values, function (d) {
+        return d[1];
+      });
+      var max1 = d3.max(data.values, function (d) {
+        return d[0];
+      });
 
-    var linearcolor = d3.scaleLinear()
-				.domain([0,max])
-        .range([0,1]);
-    var scale = width/250;
-    var a = config.startColor;	//红色
-      var b = config.endColor;	//绿色
-      var compute = d3.interpolate(a,b);
+      var linearcolor = d3.scaleLinear().domain([0, max]).range([0, 1]);
+      var scale = width / 250;
+      var a = config.startColor; //红色
+      var b = config.endColor; //绿色
+      var compute = d3.interpolate(a, b);
 
+      var padding = {
+        top: 50 * scale,
+        right: 50 * scale,
+        bottom: 50 * scale,
+        left: 50 * scale,
+      };
+      var xScale = d3
+        .scaleLinear()
+        .domain([1, max1])
+        .range([0, width - padding.left - padding.right]);
+      var yScale = d3
+        .scaleLinear()
+        .domain([0, max])
+        .range([height - padding.top - padding.bottom, 0]);
 
-     
-      var padding = { top: 50*scale, right: 50*scale, bottom: 50 *scale, left: 50*scale };     
-      var xScale = d3.scaleLinear()
-              .domain([1,max1])
-              .range([0, width - padding.left - padding.right]);
-      var yScale = d3.scaleLinear()
-              .domain([0, max])
-              .range([height - padding.top - padding.bottom, 0]);
-
-      var svg = root.append('svg')
-            .attr('width', width)
-            .attr('height', height);
+      var svg = root.append("svg").attr("width", width).attr("height", height);
       svg
         .append("rect")
         .attr("width", width)
         .attr("height", height)
         .attr("fill", "#fff");
-    var xAxis = d3.axisBottom()
-              .scale(xScale);
-    var yAxis = d3.axisLeft()
-              .scale(yScale);
-    //const color = d3.scaleOrdinal(d3.schemeDark2);
-    svg.append('g')
-      .attr('class', 'axis')
-      .attr('transform', 'translate(' + padding.left + ',' + (height - padding.bottom) + ')')
-      .call(xAxis);
-    svg.append('g')
-      .attr('class', 'axis')
-      .attr('transform', 'translate(' + padding.left + ',' + padding.top + ')')
-      .call(yAxis);
+      var xAxis = d3.axisBottom().scale(xScale);
+      var yAxis = d3.axisLeft().scale(yScale);
+      //const color = d3.scaleOrdinal(d3.schemeDark2);
+      svg
+        .append("g")
+        .attr("class", "axis")
+        .attr(
+          "transform",
+          "translate(" + padding.left + "," + (height - padding.bottom) + ")"
+        )
+        .call(xAxis);
+      svg
+        .append("g")
+        .attr("class", "axis")
+        .attr(
+          "transform",
+          "translate(" + padding.left + "," + padding.top + ")"
+        )
+        .call(yAxis);
 
-    var linePath = d3.line()
-        .x(function(d){ return xScale(d[0]) })
-        .y(function(d){ return yScale(d[1]) });
+      var linePath = d3
+        .line()
+        .x(function (d) {
+          return xScale(d[0]);
+        })
+        .y(function (d) {
+          return yScale(d[1]);
+        });
 
-    var path=svg.append('path')
-      .attr('transform', 'translate(' + padding.left + ',' + padding.top + ')')
-      .attr('d', linePath(data.values))
-      .attr('fill', 'none')
-      .attr('stroke-width', config.strokewidth)
-      .attr('stroke', 'black');
-    var totalLength = path.node().getTotalLength();
-    console.log(path.node())
-    console.log(totalLength)
-    path
-      .attr("stroke-dasharray", totalLength + " " + totalLength)
-      .attr("stroke-dashoffset", totalLength)
-      .transition()
+      var path = svg
+        .append("path")
+        .attr(
+          "transform",
+          "translate(" + padding.left + "," + padding.top + ")"
+        )
+        .attr("d", linePath(data.values))
+        .attr("fill", "none")
+        .attr("stroke-width", config.strokewidth)
+        .attr("stroke", "black");
+      var totalLength = path.node().getTotalLength();
+      console.log(path.node());
+      console.log(totalLength);
+      path
+        .attr("stroke-dasharray", totalLength + " " + totalLength)
+        .attr("stroke-dashoffset", totalLength)
+        .transition()
         .delay(function (d, i) {
           //指定延迟的时间，表示一定时间后才开始转变，单位同样为毫秒
-          return config.delay * (i+1)/(i+1);
+          return (config.delay * (i + 1)) / (i + 1);
         })
         .duration(2000)
-      .attr("stroke-dashoffset", 0);
-    console.log(1)
-    svg.append('g')
-      .selectAll('circle')
-      .data(data.values)
-      .enter()
-      .append('circle')
-      .attr('r', 1)
-      .attr('transform', function(d){
-        return 'translate(' + (xScale(d[0]) + padding.left) + ',' + (yScale(d[1]) + padding.top) + ')'
-      })
-      .transition() //开启过渡效果
+        .attr("stroke-dashoffset", 0);
+      console.log(1);
+      svg
+        .append("g")
+        .selectAll("circle")
+        .data(data.values)
+        .enter()
+        .append("circle")
+        .attr("r", 1)
+        .attr("transform", function (d) {
+          return (
+            "translate(" +
+            (xScale(d[0]) + padding.left) +
+            "," +
+            (yScale(d[1]) + padding.top) +
+            ")"
+          );
+        })
+        .transition() //开启过渡效果
         .delay(function (d, i) {
           //指定延迟的时间，表示一定时间后才开始转变，单位同样为毫秒
-          return config.delay * (i+1)/(i+1);
+          return (config.delay * (i + 1)) / (i + 1);
         })
         .duration(config.duration) //执行动画的时间--毫秒
-      .attr('r', config.dotsize)
-      .attr('transform', function(d){
-        return 'translate(' + (xScale(d[0]) + padding.left) + ',' + (yScale(d[1]) + padding.top) + ')'
-      })
-      .style("fill",function(d){
-					return compute(linearcolor(d[1]));
-				})
+        .attr("r", config.dotsize)
+        .attr("transform", function (d) {
+          return (
+            "translate(" +
+            (xScale(d[0]) + padding.left) +
+            "," +
+            (yScale(d[1]) + padding.top) +
+            ")"
+          );
+        })
+        .style("fill", function (d) {
+          return compute(linearcolor(d[1]));
+        });
       svg
         .append("g")
         .append("text")
@@ -131,8 +160,8 @@ var max1 = d3.max(data.values, function(d) {
         .attr("y", 15 * scale)
         .text(config.title);
       var duration = config.delay * data.values.length + config.duration * 2;
-    console.log(duration)
-    return this.getDuration(data,config);
+      console.log(duration);
+      return this.getDuration(data, config);
     },
     getDuration(data, config) {
       return config.delay * data.values.length + config.duration * 2;

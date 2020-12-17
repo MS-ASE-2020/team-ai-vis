@@ -40,7 +40,12 @@ export default {
       var b = config.endColor; //绿色
       var compute = d3.interpolate(a, b);
 
-      var padding = { top: 50*scale, right: 50*scale, bottom: 50*scale, left: 50*scale };
+      var padding = {
+        top: 50 * scale,
+        right: 50 * scale,
+        bottom: 50 * scale,
+        left: 50 * scale,
+      };
       var xScale = d3
         .scaleLinear()
         .domain([1, max1])
