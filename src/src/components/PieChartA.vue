@@ -40,10 +40,10 @@ export default {
         .attr("fill", "#fff");
       var arr = Array.from(data.values);
       const sortedGDP = arr.sort((a, b) => (a.value > b.value ? 1 : -1));
-      const color = d3.scaleOrdinal(d3.schemeDark2);
+      //const color = d3.scaleOrdinal(d3.schemeDark2);
 
       const max_gdp = d3.max(sortedGDP, (o) => o.value);
-
+      const color = ["#F08080","#FFFF66","#ADFF2F","#87CEFA","#7B68EE"]
       const angleScale = d3
         .scaleLinear()
         .domain([0, max_gdp])
@@ -63,7 +63,7 @@ export default {
         .enter()
         .append("path")
         .attr("d", arc)
-        .attr("fill", (d, i) => color(i))
+        .attr("fill", (d, i) => color[i])
         .attr("stroke", "#FFF")
         .attr("stroke-width", config.strokewidth + "px")
         .transition() //开启过渡效果

@@ -2,7 +2,8 @@
     "values": [
     { "country": "A", "value": 1008 },
     { "country": "D1", "value": 807 },
-    { "country": "D2", "value": 405 },
-    { "country": "D3", "value": 503 }
+    { "country": "D2", "value": 905 },
+    { "country": "D4", "value": 503 },
+    { "country": "D3", "value": 613 }
   ]
 }

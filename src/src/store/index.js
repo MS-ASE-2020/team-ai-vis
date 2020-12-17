@@ -279,7 +279,7 @@ const store = new Vuex.Store({
             delay: 200,
             duration: 1000,
             range: 180,
-            opacity: 8,
+            opacity: 10,
             fontsize: 12,
             strokewidth: 1,
             title: "Default Title",
