@@ -38,7 +38,7 @@ export default {
 
       var scale = width / 250;
       var temp = config.fontsize * scale;
-      var padding = { left: 40, right: 40, top: 40, bottom: 40 };
+      var padding = { left: 40*scale, right: 40*scale, top: 40*scale, bottom: 40*scale };
 
       var b = config.startColor; //红色
       var a = config.endColor; //绿色
