@@ -16,6 +16,12 @@
       <el-form-item label="dotsize">
         <el-input v-model.number="config.dotsize"></el-input>
       </el-form-item>
+      <el-form-item label="startColor">
+        <el-input v-model="config.startColor"></el-input>
+      </el-form-item>
+      <el-form-item label="endColor">
+        <el-input v-model="config.endColor"></el-input>
+      </el-form-item>
     </el-form>
   </div>
 </template>

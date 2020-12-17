@@ -1,0 +1,7 @@
+Product A,B,C 2020 Sales
+Product A 2020 Monthly Sales
+Product B 2020 Monthly Sales
+Product C 2020 Monthly Sales
+Product A and Competitor D1,D2,D3
+Product B and Competitor E1,E2,E3
+Product A on Major Chinese cities
